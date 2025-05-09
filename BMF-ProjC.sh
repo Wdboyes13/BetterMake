@@ -40,6 +40,10 @@ MF() {
             <ARM>$WINARMCC</ARM>
             <SF>$WIN64CC</SF>
         </Win>
+        <flags>
+            <globalLink></globalLink>
+            <globalComp></globalComp>
+        </flags>
     </Compilers>
     <FILE>$PROJ_NAME</FILE>
     <SRC>
@@ -71,6 +75,10 @@ OF() {
             <ARM>$WINARMCC</ARM>
             <SF>$WIN64CC</SF>
         </Win>
+        <flags>
+            <globalLink></globalLink>
+            <globalComp></globalComp>
+        </flags>
     </Compilers>
     <FILE>$PROJ_NAME</FILE>
     <SRC>

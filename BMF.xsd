@@ -6,10 +6,10 @@
   <xs:element name="BMF">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="Compilers" type="CompilersType"/>
-        <xs:element name="FILE" type="xs:string"/>
-        <xs:element name="SRC" type="SrcType"/>
-        <xs:element name="GIT" type="GitType"/>
+        <xs:element name="Compilers" type="CompilersType" minOccurs="1"/>
+        <xs:element name="FILE" type="xs:string" minOccurs="1"/>
+        <xs:element name="SRC" type="SrcType" minOccurs="1"/>
+        <xs:element name="GIT" type="GitType" minOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -17,9 +17,17 @@
   <!-- Compiler config -->
   <xs:complexType name="CompilersType">
     <xs:sequence>
-      <xs:element name="Mac" type="PlatformType"/>
-      <xs:element name="Linux" type="PlatformType"/>
-      <xs:element name="Win" type="PlatformType"/>
+      <xs:element name="Mac" type="PlatformType" minOccurs="1"/>
+      <xs:element name="Linux" type="PlatformType" minOccurs="1"/>
+      <xs:element name="Win" type="PlatformType" minOccurs="1"/>
+      <xs:element name="flags" type="FlagsType" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FlagsType">
+    <xs:sequence>
+      <xs:element name="globalLink" minOccurs="1"/>
+      <xs:element name="globalComp" minOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -29,25 +37,25 @@
     </xs:sequence>
   </xs:complexType>
   
-  <xs:complexType name="GitType">
+  <xs:complexType name="GitType" minOccurs="1">
     <xs:sequence>
-        <xs:element name="REPO" type="xs:string" />
-        <xs:element name="COM-MSG" type="GitMsgType" />
+        <xs:element name="REPO" type="xs:string" minOccurs="1"/>
+        <xs:element name="COM-MSG" type="GitMsgType" minOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
   <!-- Each platform -->
   <xs:complexType name="PlatformType">
     <xs:sequence>
-      <xs:element name="ARM" type="xs:string" minOccurs="0"/>
-      <xs:element name="SF" type="xs:string" minOccurs="0"/>
+      <xs:element name="ARM" type="xs:string" minOccurs="1"/>
+      <xs:element name="SF" type="xs:string" minOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
 
   <!-- Source file info -->
   <xs:complexType name="SrcType">
     <xs:sequence>
-      <xs:element name="Type" type="SrcTypeEnum"/>
-      <xs:element name="FILE" type="xs:string"/>
+      <xs:element name="Type" type="SrcTypeEnum" minOccurs="1"/>
+      <xs:element name="FILE" type="xs:string" minOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="GitMsgType">
