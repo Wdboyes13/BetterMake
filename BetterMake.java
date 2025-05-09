@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
                 .filter(p -> p.toString().endsWith(".c"))
                 .collect(Collectors.toList());
     }
-    public static List<String> compileCFiles(List<Path> cFiles, String buildDir, String CC) throws IOException, InterruptedException {
+    public static List<String> compileCFiles(List<Path> cFiles, String buildDir, String CC, String flags) throws IOException, InterruptedException {
         List<String> objectFiles = new ArrayList<>();
         Files.createDirectories(Paths.get(buildDir));
 
@@ -33,6 +33,7 @@ import java.io.InputStreamReader;
             cmd.add(cFile.toString()); 
             cmd.add("-o");
             cmd.add(objPath.toString());
+            cmd.add(flags);
             System.out.println("Compiling: " + String.join(" ", cmd));
             Process p = new ProcessBuilder(cmd).inheritIO().start();
             int exit = p.waitFor();
@@ -41,12 +42,12 @@ import java.io.InputStreamReader;
         }
         return objectFiles;
     }
-        public static void linkObjects(List<String> objectFiles, String outputBinary, String CC) throws IOException, InterruptedException {
+        public static void linkObjects(List<String> objectFiles, String outputBinary, String CC, String flags) throws IOException, InterruptedException {
         List<String> cmd = new ArrayList<>(List.of(CC.split(" ")));
         cmd.addAll(objectFiles);
         cmd.add("-o");
         cmd.add(outputBinary);
-        cmd.add("-lm");
+        cmd.add(flags);
 
         System.out.println("Linking: " + String.join(" ", cmd));
         Process p = new ProcessBuilder(cmd).inheritIO().start();
@@ -101,6 +102,13 @@ import java.io.InputStreamReader;
                 data.put("MAC64CC", mac64);
                 data.put("WIN64CC", win64);
                 data.put("WINARMCC", winArm);
+
+                String globLinks = getTagContent(compilersElement, "flags", "globalLink");
+                String globComps = getTagContent(compilersElement, "flags", "globalComp");
+                System.out.println("Global Linker Flags: " + globLinks);
+                data.put("GLOBFLAGSL", globLinks);
+                System.out.println("Global Compiler Flags: " + globComps);
+                data.put("GLOBFLAGS", globComps);
             } else {System.out.println("Compiler Tags Invalid"); System.exit(1);}
 
             String fileName = doc.getElementsByTagName("FILE").item(0).getTextContent(); // 2nd <FILE>
@@ -141,11 +149,11 @@ import java.io.InputStreamReader;
             Process proc = pb.start();
         }
     }
-    public static void MFrunCC(String CC, String SRCDir, String OUTF, String PLATFORM){
+    public static void MFrunCC(String CC, String SRCDir, String OUTF, String PLATFORM, String GLOBFLAGSL, String GLOBFLAGS){
         try {
         List<Path> cFiles = findCFiles(SRCDir);
-        List<String> objectFiles = compileCFiles(cFiles, "build/"+PLATFORM, CC);
-        linkObjects(objectFiles, OUTF, CC);
+        List<String> objectFiles = compileCFiles(cFiles, "build/"+PLATFORM, CC, GLOBFLAGS);
+        linkObjects(objectFiles, OUTF, CC, GLOBFLAGSL);
 
         System.out.println("Build complete! Output: " + OUTF);
         } catch (IOException | InterruptedException e){
@@ -153,13 +161,13 @@ import java.io.InputStreamReader;
             e.printStackTrace();
         }
     }
-    public static void OFrunCC(String CC, String SRC, String OUTF){
+    public static void OFrunCC(String CC, String SRC, String OUTF, String FLAGS){
         try {
         List<String> cmdList = new ArrayList<>(List.of(CC.split(" ")));
         cmdList.add(SRC);
         cmdList.add("-o");
         cmdList.add(OUTF);
-        cmdList.add("-lm");
+        cmdList.add(FLAGS);
         System.out.println("Running: " + String.join(" ", cmdList));
         ProcessBuilder CCPB = new ProcessBuilder(cmdList);
         Process CCProc = CCPB.start();
@@ -177,25 +185,24 @@ import java.io.InputStreamReader;
         }
     }
     
-    public static void OF() throws IOException, InterruptedException{
-                HashMap<String, String> data = parse();
+    public static void OF(HashMap<String, String> data) throws IOException, InterruptedException{
         Thread LINARM = new Thread(() ->{
-            if (data.get("LINARMCC")!=null && !data.get("LINARMCC").isEmpty()) OFrunCC(data.get("LINARMCC"), data.get("SRCF"), "rls/linARM/"+data.get("OUTF"));
+            if (data.get("LINARMCC")!=null && !data.get("LINARMCC").isEmpty()) OFrunCC(data.get("LINARMCC"), data.get("SRCF"), "rls/linARM/"+data.get("OUTF"), data.get("GLOBFLAGSL") + " " + data.get("GLOBFLAGS"));
         });
         Thread LIN = new Thread(() ->{
-            if (data.get("LIN64CC")!=null && !data.get("LIN64CC").isEmpty()) OFrunCC(data.get("LIN64CC"), data.get("SRCF"), "rls/lin/"+data.get("OUTF"));
+            if (data.get("LIN64CC")!=null && !data.get("LIN64CC").isEmpty()) OFrunCC(data.get("LIN64CC"), data.get("SRCF"), "rls/lin/"+data.get("OUTF"), data.get("GLOBFLAGSL") + " " + data.get("GLOBFLAGS"));
         });
         Thread MACARM = new Thread(() ->{
-            if (data.get("MACARMCC")!=null && !data.get("MACARMCC").isEmpty()) OFrunCC(data.get("MACARMCC"), data.get("SRCF"), "rls/macARM/"+data.get("OUTF"));
+            if (data.get("MACARMCC")!=null && !data.get("MACARMCC").isEmpty()) OFrunCC(data.get("MACARMCC"), data.get("SRCF"), "rls/macARM/"+data.get("OUTF"), data.get("GLOBFLAGSL") + " " + data.get("GLOBFLAGS"));
         });
         Thread MAC = new Thread(() ->{
-            if (data.get("MAC64CC")!=null && !data.get("MAC64CC").isEmpty())OFrunCC(data.get("MAC64CC"), data.get("SRCF"), "rls/mac/"+data.get("OUTF"));
+            if (data.get("MAC64CC")!=null && !data.get("MAC64CC").isEmpty())OFrunCC(data.get("MAC64CC"), data.get("SRCF"), "rls/mac/"+data.get("OUTF"), data.get("GLOBFLAGSL") + " " + data.get("GLOBFLAGS"));
         });
         Thread WIN = new Thread(() ->{
-            if (data.get("WIN64CC")!=null && !data.get("WIN64CC").isEmpty())OFrunCC(data.get("WIN64CC"), data.get("SRCF"), "rls/win/"+data.get("OUTF"));
+            if (data.get("WIN64CC")!=null && !data.get("WIN64CC").isEmpty())OFrunCC(data.get("WIN64CC"), data.get("SRCF"), "rls/win/"+data.get("OUTF"), data.get("GLOBFLAGSL") + " " + data.get("GLOBFLAGS"));
         });
         Thread WINARM = new Thread(() ->{
-            if (data.get("WINARMCC")!=null && !data.get("WINARMCC").isEmpty())OFrunCC(data.get("WINARMCC"), data.get("SRCF"), "rls/winARM/"+data.get("OUTF"));
+            if (data.get("WINARMCC")!=null && !data.get("WINARMCC").isEmpty())OFrunCC(data.get("WINARMCC"), data.get("SRCF"), "rls/winARM/"+data.get("OUTF"), data.get("GLOBFLAGSL") + " " + data.get("GLOBFLAGS"));
         });
         LINARM.start();
         LIN.start();
@@ -212,25 +219,24 @@ import java.io.InputStreamReader;
         WINARM.join();
     }
     
-    public static void MF() throws IOException, InterruptedException{
-                        HashMap<String, String> data = parse();
+    public static void MF(HashMap<String, String> data) throws IOException, InterruptedException{
         Thread LINARM = new Thread(() ->{
-            if (data.get("LINARMCC")!=null && !data.get("LINARMCC").isEmpty()) MFrunCC(data.get("LINARMCC"), data.get("SRCF"), "rls/linARM/"+data.get("OUTF"), "LINARM");
+            if (data.get("LINARMCC")!=null && !data.get("LINARMCC").isEmpty()) MFrunCC(data.get("LINARMCC"), data.get("SRCF"), "rls/linARM/"+data.get("OUTF"), "LINARM", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
         });
         Thread LIN = new Thread(() ->{
-            if (data.get("LIN64CC")!=null && !data.get("LIN64CC").isEmpty()) MFrunCC(data.get("LIN64CC"), data.get("SRCF"), "rls/lin/"+data.get("OUTF"), "LIN64");
+            if (data.get("LIN64CC")!=null && !data.get("LIN64CC").isEmpty()) MFrunCC(data.get("LIN64CC"), data.get("SRCF"), "rls/lin/"+data.get("OUTF"), "LIN64", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
         });
         Thread MACARM = new Thread(() ->{
-            if (data.get("MACARMCC")!=null && !data.get("MACARMCC").isEmpty()) MFrunCC(data.get("MACARMCC"), data.get("SRCF"), "rls/macARM/"+data.get("OUTF"), "MACARM");
+            if (data.get("MACARMCC")!=null && !data.get("MACARMCC").isEmpty()) MFrunCC(data.get("MACARMCC"), data.get("SRCF"), "rls/macARM/"+data.get("OUTF"), "MACARM", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
         });
         Thread MAC = new Thread(() ->{
-            if (data.get("MAC64CC")!=null && !data.get("MAC64CC").isEmpty())MFrunCC(data.get("MAC64CC"), data.get("SRCF"), "rls/mac/"+data.get("OUTF"), "MAC64");
+            if (data.get("MAC64CC")!=null && !data.get("MAC64CC").isEmpty())MFrunCC(data.get("MAC64CC"), data.get("SRCF"), "rls/mac/"+data.get("OUTF"), "MAC64", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
         });
         Thread WIN = new Thread(() ->{
-            if (data.get("WIN64CC")!=null && !data.get("WIN64CC").isEmpty())MFrunCC(data.get("WIN64CC"), data.get("SRCF"), "rls/win/"+data.get("OUTF"), "WIN64");
+            if (data.get("WIN64CC")!=null && !data.get("WIN64CC").isEmpty())MFrunCC(data.get("WIN64CC"), data.get("SRCF"), "rls/win/"+data.get("OUTF"), "WIN64", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
         });
         Thread WINARM = new Thread(() ->{
-            if (data.get("WINARMCC")!=null && !data.get("WINARMCC").isEmpty())MFrunCC(data.get("WINARMCC"), data.get("SRCF"), "rls/winARM/"+data.get("OUTF"), "WINARM");
+            if (data.get("WINARMCC")!=null && !data.get("WINARMCC").isEmpty())MFrunCC(data.get("WINARMCC"), data.get("SRCF"), "rls/winARM/"+data.get("OUTF"), "WINARM", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
         });
         LINARM.start();
         LIN.start();
@@ -249,8 +255,8 @@ import java.io.InputStreamReader;
     public static void main(String[] args) throws InterruptedException, IOException{
         HashMap<String, String> data = parse();
         String SRCT = data.get("SRCT");
-        if (SRCT.equals("OneFile")) OF();
-        if (SRCT.equals("MultiFile")) MF();
+        if (SRCT.equals("OneFile")) OF(data);
+        if (SRCT.equals("MultiFile")) MF(data);
         gitUpdate(data);
     }
 }
