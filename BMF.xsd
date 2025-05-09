@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+  <!-- Root element -->
+  <xs:element name="BMF">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Compilers" type="CompilersType"/>
+        <xs:element name="FILE" type="xs:string"/>
+        <xs:element name="SRC" type="SrcType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Compiler config -->
+  <xs:complexType name="CompilersType">
+    <xs:sequence>
+      <xs:element name="Mac" type="PlatformType"/>
+      <xs:element name="Linux" type="PlatformType"/>
+      <xs:element name="Win" type="PlatformType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Each platform -->
+  <xs:complexType name="PlatformType">
+    <xs:sequence>
+      <xs:element name="ARM" type="xs:string" minOccurs="0"/>
+      <xs:element name="SF" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Source file info -->
+  <xs:complexType name="SrcType">
+    <xs:sequence>
+      <xs:element name="Type" type="SrcTypeEnum"/>
+      <xs:element name="FILE" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Source type enum -->
+  <xs:simpleType name="SrcTypeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OneFile"/>
+      <xs:enumeration value="MultiFile"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

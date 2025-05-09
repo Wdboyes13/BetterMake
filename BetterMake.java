@@ -117,11 +117,11 @@ import java.io.InputStreamReader;
         }
         return data;
     }
-    public static void MFrunCC(String CC, String SRCDir, String OUTF){
+    public static void MFrunCC(String CC, String SRCDir, String OUTF, String PLATFORM){
         try {
         List<Path> cFiles = findCFiles(SRCDir);
-        List<String> objectFiles = compileCFiles(cFiles, "build", CC);
-        linkObjects(objectFiles, "OUTF", CC);
+        List<String> objectFiles = compileCFiles(cFiles, "build/"+PLATFORM, CC);
+        linkObjects(objectFiles, OUTF, CC);
 
         System.out.println("Build complete! Output: " + OUTF);
         } catch (IOException | InterruptedException e){
@@ -191,22 +191,22 @@ import java.io.InputStreamReader;
     public static void MF() throws IOException, InterruptedException{
                         HashMap<String, String> data = parse();
         Thread LINARM = new Thread(() ->{
-            if (data.get("LINARMCC")!=null && !data.get("LINARMCC").isEmpty()) MFrunCC(data.get("LINARMCC"), data.get("SRCF"), "rls/linARM/"+data.get("OUTF"));
+            if (data.get("LINARMCC")!=null && !data.get("LINARMCC").isEmpty()) MFrunCC(data.get("LINARMCC"), data.get("SRCF"), "rls/linARM/"+data.get("OUTF"), "LINARM");
         });
         Thread LIN = new Thread(() ->{
-            if (data.get("LIN64CC")!=null && !data.get("LIN64CC").isEmpty()) MFrunCC(data.get("LIN64CC"), data.get("SRCF"), "rls/lin/"+data.get("OUTF"));
+            if (data.get("LIN64CC")!=null && !data.get("LIN64CC").isEmpty()) MFrunCC(data.get("LIN64CC"), data.get("SRCF"), "rls/lin/"+data.get("OUTF"), "LIN64");
         });
         Thread MACARM = new Thread(() ->{
-            if (data.get("MACARMCC")!=null && !data.get("MACARMCC").isEmpty()) MFrunCC(data.get("MACARMCC"), data.get("SRCF"), "rls/macARM/"+data.get("OUTF"));
+            if (data.get("MACARMCC")!=null && !data.get("MACARMCC").isEmpty()) MFrunCC(data.get("MACARMCC"), data.get("SRCF"), "rls/macARM/"+data.get("OUTF"), "MACARM");
         });
         Thread MAC = new Thread(() ->{
-            if (data.get("MAC64CC")!=null && !data.get("MAC64CC").isEmpty())MFrunCC(data.get("MAC64CC"), data.get("SRCF"), "rls/mac/"+data.get("OUTF"));
+            if (data.get("MAC64CC")!=null && !data.get("MAC64CC").isEmpty())MFrunCC(data.get("MAC64CC"), data.get("SRCF"), "rls/mac/"+data.get("OUTF"), "MAC64");
         });
         Thread WIN = new Thread(() ->{
-            if (data.get("WIN64CC")!=null && !data.get("WIN64CC").isEmpty())MFrunCC(data.get("WIN64CC"), data.get("SRCF"), "rls/win/"+data.get("OUTF"));
+            if (data.get("WIN64CC")!=null && !data.get("WIN64CC").isEmpty())MFrunCC(data.get("WIN64CC"), data.get("SRCF"), "rls/win/"+data.get("OUTF"), "WIN64");
         });
         Thread WINARM = new Thread(() ->{
-            if (data.get("WINARMCC")!=null && !data.get("WINARMCC").isEmpty())MFrunCC(data.get("WINARMCC"), data.get("SRCF"), "rls/winARM/"+data.get("OUTF"));
+            if (data.get("WINARMCC")!=null && !data.get("WINARMCC").isEmpty())MFrunCC(data.get("WINARMCC"), data.get("SRCF"), "rls/winARM/"+data.get("OUTF"), "WINARM");
         });
         LINARM.start();
         LIN.start();
