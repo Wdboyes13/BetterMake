@@ -9,6 +9,7 @@
         <xs:element name="Compilers" type="CompilersType"/>
         <xs:element name="FILE" type="xs:string"/>
         <xs:element name="SRC" type="SrcType"/>
+        <xs:element name="GIT" type="GitType"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -22,6 +23,18 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="CustomCmds">
+    <xs:sequence>
+        <xs:element name="Cmd" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="GitType">
+    <xs:sequence>
+        <xs:element name="REPO" type="xs:string" />
+        <xs:element name="COM-MSG" type="GitMsgType" />
+    </xs:sequence>
+  </xs:complexType>
   <!-- Each platform -->
   <xs:complexType name="PlatformType">
     <xs:sequence>
@@ -37,7 +50,9 @@
       <xs:element name="FILE" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-
+  <xs:simpleType name="GitMsgType">
+    <xs:union memberTypes="PROMPT xs:string"/>
+  </xs:simpleType>
   <!-- Source type enum -->
   <xs:simpleType name="SrcTypeEnum">
     <xs:restriction base="xs:string">

@@ -6,6 +6,7 @@ import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.io.BufferedReader;
 import java.io.File;
@@ -74,6 +75,7 @@ import java.io.InputStreamReader;
             doc.getDocumentElement().normalize();
             NodeList CCs = doc.getElementsByTagName("Compilers");
              NodeList SRC = doc.getElementsByTagName("SRC");
+             NodeList GIT = doc.getElementsByTagName("GIT");
 
 // Ensure the Compilers node exists
             if (CCs.getLength() > 0) {
@@ -101,7 +103,6 @@ import java.io.InputStreamReader;
                 data.put("WINARMCC", winArm);
             } else {System.out.println("Compiler Tags Invalid"); System.exit(1);}
 
-
             String fileName = doc.getElementsByTagName("FILE").item(0).getTextContent(); // 2nd <FILE>
             if (SRC.getLength() > 0){
                 String srcType = doc.getElementsByTagName("Type").item(0).getTextContent();
@@ -111,6 +112,12 @@ import java.io.InputStreamReader;
                 data.put("SRCT", srcType);
                 data.put("SRCF", srcFile);
             } else {System.out.println("Project Data Tags Invalid"); System.exit(1);}
+            if (GIT.getLength() > 0){
+                String repo = doc.getElementsByTagName("REPO").item(0).getTextContent();
+                String msg = doc.getElementsByTagName("COM-MSG").item(0).getTextContent();
+                System.out.println("Git Repo: " + repo);
+                System.out.println("Git Commit Message: " + msg);
+            }
             System.out.println("Main Output File: " + fileName);
 
             data.put("OUTF", fileName);
@@ -118,6 +125,21 @@ import java.io.InputStreamReader;
             e.printStackTrace();
         }
         return data;
+    }
+    public static void gitUpdate(HashMap<String, String> data ) throws IOException, InterruptedException{
+        String msg = new String();
+        if (data.get("REPO")!=null && !data.get("REPO").isEmpty()) {
+            String repo = data.get("REPO");
+            if (data.get("COM-MSG")!=null && !data.get("COM-MSG").isEmpty())msg=data.get("COM-MSG"); else msg="Updated";
+            if (msg.equals("PROMPT")){
+                Scanner inp = new Scanner(System.in);
+                msg = inp.nextLine();
+            }
+            String[] cmd = {"bash", "-c", "git add . && git commit -m \"" + msg + "\" && git push " + repo + "main"};
+            ProcessBuilder pb = new ProcessBuilder(cmd);
+            pb.inheritIO();
+            Process proc = pb.start();
+        }
     }
     public static void MFrunCC(String CC, String SRCDir, String OUTF, String PLATFORM){
         try {
@@ -229,5 +251,6 @@ import java.io.InputStreamReader;
         String SRCT = data.get("SRCT");
         if (SRCT.equals("OneFile")) OF();
         if (SRCT.equals("MultiFile")) MF();
+        gitUpdate(data);
     }
 }
