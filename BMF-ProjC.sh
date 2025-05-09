@@ -7,8 +7,10 @@ fi
 PROJ_NAME="$1"
 SOURCE="$2"
 PROJ_TYPE="$3"
+curl -sU
 mkdir "$1"
 cd "$1" || exit 1
+curl -sL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BetterMake.java -o BetterMake.java
 if [ -n "$4" ]; then
     PROF="$4"
     if [ -f "$HOME/.bmf-profs/$PROF" ]; then
@@ -22,7 +24,9 @@ MF() {
     mkdir src
 
     cat <<EOF >> mk.xml
-<BMF>
+<?xml version="1.0" encoding="UTF-8"?>
+<BMF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd">
     <Compilers>
         <Mac>
             <ARM>$MACARMCC</ARM>
@@ -51,7 +55,9 @@ OF() {
     touch "$SOURCE"
 
     cat <<EOF >> mk.xml
-<BMF>
+<?xml version="1.0" encoding="UTF-8"?>
+<BMF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd">
     <Compilers>
         <Mac>
             <ARM>$MACARMCC</ARM>
