@@ -6,10 +6,14 @@
   
 ## To run
 To make a new MultiFile Project  
-`bash -c "$(curl -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh) <project-name> x MF <OPTIONAL: profile-name>"`  
+```sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh) <project-name> x MF <OPTIONAL: profile-name>"
+```  
   
 To make a new SingleFile Project  
-`bash -c "$(curl -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh) <project-name> <file.c> OF <OPTIONAL: profile-name>"`  
+```sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh) <project-name> <file.c> OF <OPTIONAL: profile-name>"
+```  
   
 To start build  
 `java BetterMake.java`  
