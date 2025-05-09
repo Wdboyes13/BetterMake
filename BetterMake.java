@@ -73,6 +73,7 @@ import java.io.InputStreamReader;
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
             NodeList CCs = doc.getElementsByTagName("Compilers");
+             NodeList SRC = doc.getElementsByTagName("SRC");
 
 // Ensure the Compilers node exists
             if (CCs.getLength() > 0) {
@@ -98,20 +99,21 @@ import java.io.InputStreamReader;
                 data.put("MAC64CC", mac64);
                 data.put("WIN64CC", win64);
                 data.put("WINARMCC", winArm);
-            }
+            } else {System.out.println("Compiler Tags Invalid"); System.exit(1);}
 
 
             String fileName = doc.getElementsByTagName("FILE").item(0).getTextContent(); // 2nd <FILE>
-            String srcType = doc.getElementsByTagName("Type").item(0).getTextContent();
-            String srcFile = doc.getElementsByTagName("FILE").item(1).getTextContent(); // 3rd <FILE>
-
+            if (SRC.getLength() > 0){
+                String srcType = doc.getElementsByTagName("Type").item(0).getTextContent();
+                String srcFile = doc.getElementsByTagName("FILE").item(1).getTextContent(); // 3rd <FILE>
+                System.out.println("Source Type: " + srcType);
+                System.out.println("Source File: " + srcFile);
+                data.put("SRCT", srcType);
+                data.put("SRCF", srcFile);
+            } else {System.out.println("Project Data Tags Invalid"); System.exit(1);}
             System.out.println("Main Output File: " + fileName);
-            System.out.println("Source Type: " + srcType);
-            System.out.println("Source File: " + srcFile);
 
             data.put("OUTF", fileName);
-            data.put("SRCT", srcType);
-            data.put("SRCF", srcFile);
         } catch (Exception e) {
             e.printStackTrace();
         }
