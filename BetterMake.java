@@ -163,6 +163,7 @@ import java.net.URL;
                 if (msg.equals("PROMPT")){
                     Scanner inp = new Scanner(System.in);
                     msg = inp.nextLine();
+                    inp.close();
                 }
                 String[] cmd = {"bash", "-c", "git add . && git commit -m \"" + msg + "\" && git push " + repo + " main"};
                 ProcessBuilder pb = new ProcessBuilder(cmd);
