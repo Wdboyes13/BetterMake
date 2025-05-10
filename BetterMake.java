@@ -125,6 +125,8 @@ import java.io.InputStreamReader;
                 String msg = doc.getElementsByTagName("COM-MSG").item(0).getTextContent();
                 System.out.println("Git Repo: " + repo);
                 System.out.println("Git Commit Message: " + msg);
+                data.put("REPO", repo);
+                data.put("MSG", msg);
             }
             System.out.println("Main Output File: " + fileName);
 
@@ -138,15 +140,16 @@ import java.io.InputStreamReader;
         String msg = new String();
         if (data.get("REPO")!=null && !data.get("REPO").isEmpty()) {
             String repo = data.get("REPO");
-            if (data.get("COM-MSG")!=null && !data.get("COM-MSG").isEmpty())msg=data.get("COM-MSG"); else msg="Updated";
+            if (data.get("MSG")!=null && !data.get("MSG").isEmpty()) msg=data.get("MSG"); else msg="Updated";
             if (msg.equals("PROMPT")){
                 Scanner inp = new Scanner(System.in);
                 msg = inp.nextLine();
             }
-            String[] cmd = {"bash", "-c", "git add . && git commit -m \"" + msg + "\" && git push " + repo + "main"};
+            String[] cmd = {"bash", "-c", "git add . && git commit -m \"" + msg + "\" && git push " + repo + " main"};
             ProcessBuilder pb = new ProcessBuilder(cmd);
             pb.inheritIO();
             Process proc = pb.start();
+            proc.waitFor();
         }
     }
     public static void MFrunCC(String CC, String SRCDir, String OUTF, String PLATFORM, String GLOBFLAGSL, String GLOBFLAGS){
@@ -257,6 +260,7 @@ import java.io.InputStreamReader;
         String SRCT = data.get("SRCT");
         if (SRCT.equals("OneFile")) OF(data);
         if (SRCT.equals("MultiFile")) MF(data);
+        System.out.println(("Running git"));
         gitUpdate(data);
     }
 }
