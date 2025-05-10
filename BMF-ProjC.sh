@@ -15,6 +15,8 @@ if [ -n "$4" ]; then
     PROF="$4"
     if [ -f "$HOME/.bmf-profs/$PROF" ]; then
         source $HOME/.bmf-profs/$PROF
+    else
+        echo "Profile $PROF not found. Using default settings."
     fi
 fi
 
