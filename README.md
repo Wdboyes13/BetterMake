@@ -1,18 +1,20 @@
 # BetterMake  
+### A Build tool for C projects, Has Multi-Threading, Cross-Compilation, Git Integration, And is configure in XML
+### Have something you'd like to see added, make an issue! or email [willdev2025@outlook.com](mailto:willdev2025@outlook.com)
 ## Required
 > [java](https://adoptium.net/temurin/releases/?package=jdk&version=21)  
 > [git (if using git)](https://git-scm.com/downloads)  
 > [bash (if using git or project generator)](https://www.gnu.org/software/bash/)
   
 ## To run
-To make a new MultiFile Project  
+To make a new MultiFile Project  (May request a proxy, hit enter, ignore error)
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh) <project-name> x MF <OPTIONAL: profile-name>"
+curl --noproxy "*" -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh | bash -s <project-name> x MF <OPTIONAL: profile-name>
 ```  
   
-To make a new SingleFile Project  
+To make a new SingleFile Project  (May request a proxy, hit enter, ignore error)
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh) <project-name> <file.c> OF <OPTIONAL: profile-name>"
+curl --noproxy "*" -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh | bash -s <project-name> <file.c> OF <OPTIONAL: profile-name>
 ```  
   
 To start build  
