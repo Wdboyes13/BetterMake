@@ -59,17 +59,10 @@
     </xs:sequence>
   </xs:complexType>
            
-  <xs:simpleType name="GitMsgType">
-  <xs:union>
-    <xs:simpleType>
-      <xs:restriction base="xs:string">
-        <xs:enumeration value="PROMPT"/>
-      </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType>
-      <xs:restriction base="xs:string"/>
-    </xs:simpleType>
-  </xs:union>
+<xs:simpleType name="GitMsgType">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="PROMPT"/>
+  </xs:restriction>
 </xs:simpleType>
            
   <!-- Source type enum -->
