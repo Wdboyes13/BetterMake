@@ -37,7 +37,7 @@
     </xs:sequence>
   </xs:complexType>
   
-  <xs:complexType name="GitType" minOccurs="1">
+  <xs:complexType name="GitType">
     <xs:sequence>
         <xs:element name="REPO" type="xs:string" minOccurs="1"/>
         <xs:element name="COM-MSG" type="GitMsgType" minOccurs="1"/>
