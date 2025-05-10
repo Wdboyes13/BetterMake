@@ -7,12 +7,12 @@
 > [bash (if using git or project generator)](https://www.gnu.org/software/bash/)
   
 ## To run
-To make a new MultiFile Project  (May request a proxy, hit enter)
+To make a new MultiFile Project  (May request a proxy, hit enter, ignore error)
 ```sh
 curl --noproxy "*" -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh | bash -s <project-name> x MF <OPTIONAL: profile-name>
 ```  
   
-To make a new SingleFile Project  (May request a proxy, hit enter)
+To make a new SingleFile Project  (May request a proxy, hit enter, ignore error)
 ```sh
 curl --noproxy "*" -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh | bash -s <project-name> <file.c> OF <OPTIONAL: profile-name>
 ```  
