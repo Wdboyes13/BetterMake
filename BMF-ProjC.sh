@@ -52,6 +52,10 @@ MF() {
         <Type>MultiFile</Type>
         <FILE>src</FILE>
     </SRC>
+    <GIT>
+        <REPO></REPO>
+        <COM-MSG></COM-MSG>
+    </GIT>
 </BMF>
 EOF
 }
@@ -87,6 +91,10 @@ OF() {
         <Type>OneFile</Type>
         <FILE>$SOURCE</FILE>
     </SRC>
+    <GIT>
+        <REPO></REPO>
+        <COM-MSG></COM-MSG>
+    </GIT>
 </BMF>
 EOF
 }
