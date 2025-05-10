@@ -158,10 +158,12 @@ import java.net.URL;
         public static void gitUpdate(HashMap<String, String> data ) throws IOException, InterruptedException{
             String msg = new String();
             if (data.get("REPO")!=null && !data.get("REPO").isEmpty()) {
+                System.out.println(("Running git"));
                 String repo = data.get("REPO");
                 if (data.get("MSG")!=null && !data.get("MSG").isEmpty()) msg=data.get("MSG"); else msg="Updated";
                 if (msg.equals("PROMPT")){
                     Scanner inp = new Scanner(System.in);
+                    System.out.print("Enter Commit Message: ");
                     msg = inp.nextLine();
                     inp.close();
                 }
@@ -282,7 +284,6 @@ import java.net.URL;
             String SRCT = data.get("SRCT");
             if (SRCT.equals("OneFile")) OF(data);
             if (SRCT.equals("MultiFile")) MF(data);
-            System.out.println(("Running git"));
             gitUpdate(data);
         }
 }
