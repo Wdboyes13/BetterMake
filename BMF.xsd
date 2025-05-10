@@ -26,8 +26,8 @@
 
 <xs:complexType name="FlagsType">
   <xs:sequence>
-    <xs:element name="globalLink" type="xs:string" minOccurs="1"/>
-    <xs:element name="globalComp" type="xs:string" minOccurs="1"/>
+    <xs:element name="globalLink" type="xs:string" minOccurs="0"/>
+    <xs:element name="globalComp" type="xs:string" minOccurs="0"/>
   </xs:sequence>
 </xs:complexType>
 
@@ -39,15 +39,15 @@
   
   <xs:complexType name="GitType">
     <xs:sequence>
-        <xs:element name="REPO" type="xs:string" minOccurs="1"/>
-        <xs:element name="COM-MSG" type="GitMsgType" minOccurs="1"/>
+        <xs:element name="REPO" type="xs:string" minOccurs="0"/>
+        <xs:element name="COM-MSG" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
   <!-- Each platform -->
   <xs:complexType name="PlatformType">
     <xs:sequence>
-      <xs:element name="ARM" type="xs:string" minOccurs="1"/>
-      <xs:element name="SF" type="xs:string" minOccurs="1"/>
+      <xs:element name="ARM" type="xs:string" minOccurs="0"/>
+      <xs:element name="SF" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -59,11 +59,6 @@
     </xs:sequence>
   </xs:complexType>
            
-<xs:simpleType name="GitMsgType">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="PROMPT"/>
-  </xs:restriction>
-</xs:simpleType>
            
   <!-- Source type enum -->
   <xs:simpleType name="SrcTypeEnum">
