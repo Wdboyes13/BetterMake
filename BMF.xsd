@@ -24,12 +24,12 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="FlagsType">
-    <xs:sequence>
-      <xs:element name="globalLink" minOccurs="1"/>
-      <xs:element name="globalComp" minOccurs="1"/>
-    </xs:sequence>
-  </xs:complexType>
+<xs:complexType name="FlagsType">
+  <xs:sequence>
+    <xs:element name="globalLink" type="xs:string" minOccurs="1"/>
+    <xs:element name="globalComp" type="xs:string" minOccurs="1"/>
+  </xs:sequence>
+</xs:complexType>
 
   <xs:complexType name="CustomCmds">
     <xs:sequence>
