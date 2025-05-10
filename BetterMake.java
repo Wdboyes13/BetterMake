@@ -39,7 +39,9 @@ import java.net.URL;
                 cmd.add(cFile.toString()); 
                 cmd.add("-o");
                 cmd.add(objPath.toString());
-                cmd.addAll(List.of(flags.split(" ")));
+                if (!flags.isBlank()) {
+                    cmd.addAll(List.of(flags.trim().split("\\s+")));
+                }
                 System.out.println("Compiling: " + String.join(" ", cmd));
                 Process p = new ProcessBuilder(cmd).inheritIO().start();
                 int exit = p.waitFor();
@@ -53,7 +55,9 @@ import java.net.URL;
             cmd.addAll(objectFiles);
             cmd.add("-o");
             cmd.add(outputBinary);
-            cmd.addAll(List.of(flags.split(" ")));
+            if (!flags.isBlank()) {
+                cmd.addAll(List.of(flags.trim().split("\\s+")));
+            }
 
             System.out.println("Linking: " + String.join(" ", cmd));
             Process p = new ProcessBuilder(cmd).inheritIO().start();
@@ -185,7 +189,9 @@ import java.net.URL;
                 cmdList.add(SRC);
                 cmdList.add("-o");
                 cmdList.add(OUTF);
-                cmdList.addAll(List.of(FLAGS.split(" ")));
+                if (!FLAGS.isBlank()) {
+                    cmdList.addAll(List.of(FLAGS.trim().split("\\s+")));
+                }
                 System.out.println("Running: " + String.join(" ", cmdList));
                 ProcessBuilder CCPB = new ProcessBuilder(cmdList);
                 Process CCProc = CCPB.start();
