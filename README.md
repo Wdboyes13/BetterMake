@@ -17,6 +17,8 @@ To make a new SingleFile Project  (May request a proxy, hit enter, ignore error)
 curl --noproxy "*" -fsSL https://raw.githubusercontent.com/Wdboyes13/bettermake.src.main.java.com.bettermake.BetterMake/refs/heads/main/BMF-ProjC.sh | bash -s <project-name> <file.c> OF <OPTIONAL: profile-name>
 ```  
   
+Download: [BetterMake.jar](https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/bettermake/target/BetterMake.jar)
+  
 To start build  
 `java -jar BetterMake.jar`  
   
@@ -79,5 +81,5 @@ Here is an example of an `mk.xml`, All fields are required to be present, but do
 - C++ support (Just Needs Testing)  
 - ObjC++ support (Just Needs Testing)  
 - ObjC support (Just Needs Testing)  
-- Move to JAR File
+- ✅Move to JAR File
 - Custom Commands Support
