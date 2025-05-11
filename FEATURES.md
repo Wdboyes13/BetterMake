@@ -1,0 +1,14 @@
+# Features
+- C Support
+- C++ Support
+- Objective-C Support
+- Objective-C++ Support
+- Multi-Threading
+- Reusable configuration profiles (Requires BASH)
+- Project Generation SH Script (Requires BASH)
+- Git Integration (Requires BASH & GIT)
+- Cross-Compilation (Supported OSes: Windows, Linux, macOS - Support Archs x86_64, AArch64)
+- XML Configuration
+- Works on ALL OSes that support Java 21
+- Self-Contained
+- Only uses built-in java stuff

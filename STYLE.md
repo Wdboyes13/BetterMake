@@ -11,7 +11,7 @@ Try to keep things using only
 1. `[]()`
 2. `##`
 3. `#'
-4. `###`
+4. `###` (Avoid - Because looks too close to ##)
 5. Backtick ` Code Blocks
 6. Triple Backtick ``` Code Blocks (MUST Include language tag where possible)
 
