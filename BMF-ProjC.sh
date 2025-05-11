@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see https://www.gnu.org/licenses/.
 
-if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; || [-z "$4"] then
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; || [-z "$4"]; then
     echo "Usage: $0 <project-name> <source-file.c / source-dir> <project-type> <Lang> <profile-name>"
     exit 1
 fi
