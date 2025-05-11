@@ -10,6 +10,7 @@
         <xs:element name="FILE" type="xs:string" minOccurs="1"/>
         <xs:element name="SRC" type="SrcType" minOccurs="1"/>
         <xs:element name="GIT" type="GitType" minOccurs="1"/>
+        <xs:element name="CMDS" type="CustomCmds" minOccurs="1" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -31,11 +32,11 @@
   </xs:sequence>
 </xs:complexType>
 
-  <!-- <xs:complexType name="CustomCmds">
+  <xs:complexType name="CustomCmds">
     <xs:sequence>
-        <xs:element name="Cmd" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="CMD" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
-  </xs:complexType> -->
+  </xs:complexType>
   
   <xs:complexType name="GitType">
     <xs:sequence>
