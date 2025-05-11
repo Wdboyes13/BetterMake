@@ -12,3 +12,4 @@
 - Works on ALL OSes that support Java 21
 - Self-Contained
 - Only uses built-in java stuff
+- Custom Commands Support

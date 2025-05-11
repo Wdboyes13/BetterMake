@@ -32,5 +32,8 @@
         <REPO></REPO> <!-- Git Repository URL -->
         <COMMSG></COMMSG> <!-- Git Commit Message -->
     </GIT>
+    <CMDS>
+        <CMD></CMD> <!-- Your Custom Command (Add as many of these tags as you want) -->
+    </CMDS>
 </BMF>
 ```
