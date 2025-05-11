@@ -16,6 +16,7 @@ import java.io.File;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.*;
 
@@ -90,7 +91,7 @@ public class CustCmds {
             ProcessBuilder CmdPB = new ProcessBuilder(SplCmd);
             Process Proc = CmdPB.start();
             Proc.waitFor();
-            System.out.println("Command: " + SplCmd + " PID: " + Proc.pid() + " EXIT CODE: " + Proc.exitValue());
+            System.out.println("Command: " + Arrays.toString(SplCmd) + " PID: " + Proc.pid() + " EXIT CODE: " + Proc.exitValue());
         }
     }
 }
