@@ -6,6 +6,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+// TODO: Add Custom Compiler Flags
+// TODO: Add Custom Linker Flags
+
+
 // ========================================
 // === ONEFILE PROJECT SPECIFIC METHODS ===
 // ========================================

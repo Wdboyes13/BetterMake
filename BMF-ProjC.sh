@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# TODO: Add Language Arg
+
 # Check arguments first!
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
     echo "Usage: $0 <project-name> <source-file.c / source-dir> <project-type> <profile-name>"
@@ -14,7 +17,7 @@ curl -sL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/
 if [ -n "$4" ]; then
     PROF="$4"
     if [ -f "$HOME/.bmf-profs/$PROF" ]; then
-        source $HOME/.bmf-profs/$PROF
+        source "$HOME/.bmf-profs/$PROF"
     else
         echo "Profile $PROF not found. Using default settings."
     fi

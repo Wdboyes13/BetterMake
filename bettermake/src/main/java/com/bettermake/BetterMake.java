@@ -7,6 +7,9 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.io.IOException;
 
+// TODO: Add Custom Commands
+
+
 // =================
 // === MAIN FILE ===
 // =================

@@ -7,6 +7,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+// TODO: Add Custom Compiler Flags
+// TODO: Add Custom Linker Flags
+
+
 // ==========================================
 // === MULTIFILE PROJECT SPECIFIC METHODS ===
 // ==========================================
