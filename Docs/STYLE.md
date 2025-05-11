@@ -47,11 +47,13 @@ public class yourfile {
 }
 ```
   
-## XML Tag Addition
+### XML Tag Addition
 Please add your XML Tag to the Schema (BMF.xsd)  
 Please verify that the Tag gets recognized  
 Please define what your tag is in the Return Map for XMLParser.parse() at the end of XMLParser  
   
 ## Shell
-Keep it POSIX Compliant, try not to install anything, and dont include OS Specific Stuff  
-Windows is excluded from this
+Keep it Compatible with POSIX Compliant OSes  
+Do NOT to install anything   
+Do NOT include OS Specific Stuff (Like almost anything windows)  
+Windows specific stuff MUST NOT be used, this includes PowerShell/Command Prompt  
