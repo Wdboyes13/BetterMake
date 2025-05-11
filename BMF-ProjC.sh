@@ -10,7 +10,7 @@ PROJ_TYPE="$3"
 curl -sU
 mkdir "$1"
 cd "$1" || exit 1
-curl -sL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BetterMake.java -o BetterMake.java
+curl -sL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/bettermake/target/BetterMake.jar -o BetterMake.jar
 if [ -n "$4" ]; then
     PROF="$4"
     if [ -f "$HOME/.bmf-profs/$PROF" ]; then
@@ -49,6 +49,7 @@ MF() {
     </Compilers>
     <FILE>$PROJ_NAME</FILE>
     <SRC>
+        <LANG>C</LANG>
         <Type>MultiFile</Type>
         <FILE>src</FILE>
     </SRC>
@@ -88,6 +89,7 @@ OF() {
     </Compilers>
     <FILE>$PROJ_NAME</FILE>
     <SRC>
+        <LANG>C</LANG>
         <Type>OneFile</Type>
         <FILE>$SOURCE</FILE>
     </SRC>

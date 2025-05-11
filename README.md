@@ -1,4 +1,4 @@
-# BetterMake  
+# bettermake.src.main.java.com.bettermake.BetterMake  
 ### A Build tool for C projects, Has Multi-Threading, Cross-Compilation, Git Integration, And is configure in XML
 ### Have something you'd like to see added, make an issue! or email [willdev2025@outlook.com](mailto:willdev2025@outlook.com)
 ## Required
@@ -9,16 +9,16 @@
 ## To run
 To make a new MultiFile Project  (May request a proxy, hit enter, ignore error)
 ```sh
-curl --noproxy "*" -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh | bash -s <project-name> x MF <OPTIONAL: profile-name>
+curl --noproxy "*" -fsSL https://raw.githubusercontent.com/Wdboyes13/bettermake.src.main.java.com.bettermake.BetterMake/refs/heads/main/BMF-ProjC.sh | bash -s <project-name> x MF <OPTIONAL: profile-name>
 ```  
   
 To make a new SingleFile Project  (May request a proxy, hit enter, ignore error)
 ```sh
-curl --noproxy "*" -fsSL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF-ProjC.sh | bash -s <project-name> <file.c> OF <OPTIONAL: profile-name>
+curl --noproxy "*" -fsSL https://raw.githubusercontent.com/Wdboyes13/bettermake.src.main.java.com.bettermake.BetterMake/refs/heads/main/BMF-ProjC.sh | bash -s <project-name> <file.c> OF <OPTIONAL: profile-name>
 ```  
   
 To start build  
-`java BetterMake.java`  
+`java -jar BetterMake.jar`  
   
 ## Config Files  
 Configuration files are stored in `~/.bmf-profs`  
@@ -40,7 +40,7 @@ Here is an example of an `mk.xml`, All fields are required to be present, but do
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <BMF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd">
+     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/bettermake.src.main.java.com.bettermake.BetterMake/refs/heads/main/BMF.xsd">
     <Compilers>
         <Mac>
             <ARM>clang</ARM> <!-- macOS AArch64 C Compiler -->
