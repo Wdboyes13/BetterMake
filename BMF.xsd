@@ -31,11 +31,11 @@
   </xs:sequence>
 </xs:complexType>
 
-  <xs:complexType name="CustomCmds">
+  <!-- <xs:complexType name="CustomCmds">
     <xs:sequence>
         <xs:element name="Cmd" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
-  </xs:complexType>
+  </xs:complexType> -->
   
   <xs:complexType name="GitType">
     <xs:sequence>
