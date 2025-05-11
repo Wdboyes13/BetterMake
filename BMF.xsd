@@ -54,6 +54,7 @@
   <!-- Source file info -->
   <xs:complexType name="SrcType">
     <xs:sequence>
+      <xs:element name="LANG" type="xs:string" minOccurs="1"/>
       <xs:element name="Type" type="SrcTypeEnum" minOccurs="1"/>
       <xs:element name="FILE" type="xs:string" minOccurs="1"/>
     </xs:sequence>
