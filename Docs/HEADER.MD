@@ -1,8 +1,8 @@
 # GNU GPL Headers
-- # XML/XSD
-- # Java
-- # Shell
-- # Markdown
+- # [XML/XSD](#xmlxsd)
+- # [Java](#java)
+- # [Shell](#shell)
+- # [Markdown](#markdown)
   
 ## XML/XSD
 ```xml
