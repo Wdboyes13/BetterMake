@@ -1,4 +1,4 @@
-# BetterMake  <img src="Logo.svg" width="200"/>
+# BetterMake  <img src="Logo.svg" width="50"/>
 __A Build tool for C C++ ObjC & ObjC++ projects.__   
 __Have something you'd like to see added, make an issue! or email [willdev2025@outlook.com](mailto:willdev2025@outlook.com)__  
   
