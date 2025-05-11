@@ -3,7 +3,7 @@
 ### Has Multi-Threading, Cross-Compilation, Git Integration, And is configure in XML.  
 ### Have something you'd like to see added, make an issue! or email [willdev2025@outlook.com](mailto:willdev2025@outlook.com)
 ## Required
-> [java](https://adoptium.net/temurin/releases/?package=jdk&version=21)  
+> [java (21 or Later)](https://adoptium.net/temurin/releases/?package=jdk&version=21)  
 > [git (if using git)](https://git-scm.com/downloads)  
 > [bash (if using git or project generator)](https://www.gnu.org/software/bash/)
   
