@@ -9,14 +9,14 @@
   
   
 # Info  
-## General
+### General
 > [Features](Docs/FEATURES.md)  
 > [Running](Docs/RUNNING.md)   
-## Configuration  
+### Configuration  
 > [Profiles](Docs/PROFILES.md)  
 > [Configuration](Docs/CONFIG.md)  
 > [Project Structure](Docs/PROJ_STRUCT.md)
-## Dev
+### Dev
 > [TODO](Docs/TODO.md)  
 > [Contributing Guide](CONTRIBUTING.md)  
 > [Style Guide](Docs/STYLE.md)  
