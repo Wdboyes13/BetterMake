@@ -3,8 +3,8 @@
 Go to [FEATURES.md](FEATURES.md)
 ## In Testing
 - None
-## To-Do
+## To-Do (Sorted By Priority)
 - Make Shell Script Accept Language Arg
-- Add per-compiler flags
-- Add per-linker flags
 - Custom Commands Support
+- Add per-linker flags
+- Add per-compiler flags
