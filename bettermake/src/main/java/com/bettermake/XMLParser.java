@@ -42,7 +42,7 @@ public class XMLParser {
         try {
             File inputFile = new File("mk.xml");  // Your XML filename here
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            URL schemaLocation = new URI("https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd").toURL();
+            URL schemaLocation = new URI("https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd?v=2").toURL();
             Schema schema = factory.newSchema(schemaLocation);
 
             // Create validator
