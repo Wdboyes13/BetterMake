@@ -73,16 +73,4 @@ Here is an example of an `mk.xml`, All fields are required to be present, but do
     </GIT>
 </BMF>
 ```
-## Coming SOON  
-- ✅Make it not print "Running git" if Git not setup  
-- ✅Add a prompt (if selected) for Git Commit Message input  
-- ✅Move to JAR File  
-  
-- C++ support (Just Needs Testing)  
-- ObjC++ support (Just Needs Testing)  
-- ObjC support (Just Needs Testing)  
-  
-- Make Shell Script Accept Language Arg  
-- Add per-compiler flags  
-- Add per-linker flags  
-- Custom Commands Support
+## [TODO](TODO.md)
