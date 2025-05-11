@@ -8,13 +8,16 @@
 > [bash (if using git or project generator)](https://www.gnu.org/software/bash/)
   
   
-# Info
-### [Features](Docs/FEATURES.md)  
-### [Running](Docs/RUNNING.md)   
-### [Profiles](Docs/PROFILES.md)  
-### [Configuration](Docs/CONFIG.md)  
-### [Project Structure](Docs/PROJ_STRUCT.md)
-### [TODO](Docs/TODO.md)  
-### [Contributing Guide](CONTRIBUTING.md)  
-### [Style Guide](Docs/STYLE.md)  
+# Info  
+## General
+> [Features](Docs/FEATURES.md)  
+> [Running](Docs/RUNNING.md)   
+## Configuration  
+> [Profiles](Docs/PROFILES.md)  
+> [Configuration](Docs/CONFIG.md)  
+> [Project Structure](Docs/PROJ_STRUCT.md)
+## Dev
+> [TODO](Docs/TODO.md)  
+> [Contributing Guide](CONTRIBUTING.md)  
+> [Style Guide](Docs/STYLE.md)  
   
