@@ -74,4 +74,7 @@ Here is an example of an `mk.xml`, All fields are required to be present, but do
     </GIT>
 </BMF>
 ```
-## [TODO](TODO.md)
+## [TODO](TODO.md)  
+## [Contributing Guide](CONTRIBUTING.md)  
+## [Style Guide](STYLE.md)  
+  
