@@ -97,7 +97,7 @@ public class XMLParser {
                 Element srcElement = (Element) SRC.item(0);
                 String lang = srcElement.getElementsByTagName("LANG").item(0).getTextContent();
                 String srcType = srcElement.getElementsByTagName("Type").item(0).getTextContent();
-                String srcFile = srcElement.getElementsByTagName("FILE").item(1).getTextContent(); // 3rd <FILE>
+                String srcFile = srcElement.getElementsByTagName("FILE").item(0).getTextContent(); // 3rd <FILE>
                 System.out.println("Source Language: " + lang);
                 System.out.println("Source Type: " + srcType);
                 System.out.println("Source File: " + srcFile);
