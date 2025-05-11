@@ -20,11 +20,25 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
     public class BetterMake {
-        public static List<Path> findCFiles(String rootDir) throws IOException {
-        return Files.walk(Paths.get(rootDir))
-                .filter(p -> p.toString().endsWith(".c"))
-                .collect(Collectors.toList());
-    }
+        // =======================
+        // === FINDING C FILES ===
+        // =======================
+        public static List<Path> findCFiles(String rootDir, String lang) throws IOException {
+                String langext;
+                if (lang.equals("C")) langext = ".c";
+                else if (lang.equals("CPP")) langext = ".cpp";
+                else if (lang.equals("OBJC")) langext = ".m";
+                else if (lang.equals("OBJCPP")) langext = ".mm";
+                else {
+                    langext = new String();
+                }
+            return Files.walk(Paths.get(rootDir))
+                        .filter(p -> p.toString().endsWith(langext))
+                        .collect(Collectors.toList());
+        }
+        // ===================================
+        // === MULTIFILE PROJECT COMPILING ===
+        // ===================================
         public static List<String> compileCFiles(List<Path> cFiles, String buildDir, String CC, String flags) throws IOException, InterruptedException {
             List<String> objectFiles = new ArrayList<>();
             Files.createDirectories(Paths.get(buildDir));
@@ -50,6 +64,9 @@ import java.net.URL;
             }
             return objectFiles;
         }
+        // =================================
+        // === MULTIFILE PROJECT LINKING ===
+        // =================================
         public static void linkObjects(List<String> objectFiles, String outputBinary, String CC, String flags) throws IOException, InterruptedException {
             List<String> cmd = new ArrayList<>(List.of(CC.split(" ")));
             cmd.addAll(objectFiles);
@@ -64,6 +81,10 @@ import java.net.URL;
             int exit = p.waitFor();
             if (exit != 0) throw new RuntimeException("Linking failed.");
         }
+
+        // ===========================================
+        // === XML NESTING OPTIMIZATION - NESTED 3 ===
+        // ===========================================
         private static String getTagContent(Element parent, String childTag, String tag) {
             NodeList childNodes = parent.getElementsByTagName(childTag);
             if (childNodes.getLength() > 0) {
@@ -75,6 +96,9 @@ import java.net.URL;
             }
             return null;  // Return null if tag is not found
         }
+        // =====================
+        // === XML PARSING ===
+        // =====================
         public static HashMap<String, String> parse(){
             HashMap<String, String> data = new HashMap<>();
             try {
@@ -97,7 +121,7 @@ import java.net.URL;
                 NodeList SRC = doc.getElementsByTagName("SRC");
                 NodeList GIT = doc.getElementsByTagName("GIT");
 
-    // Ensure the Compilers node exists
+                // Ensure the Compilers node exists
                 if (CCs.getLength() > 0) {
                     Element compilersElement = (Element) CCs.item(0);
 
@@ -132,10 +156,14 @@ import java.net.URL;
 
                 String fileName = doc.getElementsByTagName("FILE").item(0).getTextContent(); // 2nd <FILE>
                 if (SRC.getLength() > 0){
-                    String srcType = doc.getElementsByTagName("Type").item(0).getTextContent();
-                    String srcFile = doc.getElementsByTagName("FILE").item(1).getTextContent(); // 3rd <FILE>
+                    Element srcElement = (Element) SRC.item(0);
+                    String lang = srcElement.getElementsByTagName("LANG").item(0).getTextContent();
+                    String srcType = srcElement.getElementsByTagName("Type").item(0).getTextContent();
+                    String srcFile = srcElement.getElementsByTagName("FILE").item(1).getTextContent(); // 3rd <FILE>
+                    System.out.println("Source Language: " + lang);
                     System.out.println("Source Type: " + srcType);
                     System.out.println("Source File: " + srcFile);
+                    data.put("LANG", lang);
                     data.put("SRCT", srcType);
                     data.put("SRCF", srcFile);
                 } else {System.out.println("Project Data Tags Invalid"); System.exit(1);}
@@ -155,6 +183,9 @@ import java.net.URL;
             }
             return data;
         }
+        // ====================
+        // === GIT UPDATING ===
+        // ====================
         public static void gitUpdate(HashMap<String, String> data ) throws IOException, InterruptedException{
             String msg = new String();
             if (data.get("REPO")!=null && !data.get("REPO").isEmpty()) {
@@ -174,9 +205,12 @@ import java.net.URL;
                 proc.waitFor();
             }
         }
-        public static void MFrunCC(String CC, String SRCDir, String OUTF, String PLATFORM, String GLOBFLAGSL, String GLOBFLAGS){
+        // =====================================================
+        // === RUNNING COMPILER & LINKER - MULTIFILE PROJECT ===
+        // =====================================================
+        public static void MFrunCC(String CC, String SRCDir, String OUTF, String PLATFORM, String GLOBFLAGSL, String GLOBFLAGS, String LANG){
             try {
-            List<Path> cFiles = findCFiles(SRCDir);
+            List<Path> cFiles = findCFiles(SRCDir, LANG);
             List<String> objectFiles = compileCFiles(cFiles, "build/"+PLATFORM, CC, GLOBFLAGS);
             linkObjects(objectFiles, OUTF, CC, GLOBFLAGSL);
 
@@ -186,6 +220,9 @@ import java.net.URL;
                 e.printStackTrace();
             }
         }
+        // =====================================================
+        // === RUNNING COMPILER & LINKER - MULTIFILE PROJECT ===
+        // =====================================================
         public static void OFrunCC(String CC, String SRC, String OUTF, String FLAGS){
             try {
                 List<String> cmdList = new ArrayList<>(List.of(CC.split(" ")));
@@ -211,7 +248,9 @@ import java.net.URL;
                 e.printStackTrace();
             }
         }
-    
+        // ========================================
+        // === MULTITHREADING - ONEFILE PROJECT ===
+        // ========================================
         public static void OF(HashMap<String, String> data) throws IOException, InterruptedException{
             Thread LINARM = new Thread(() ->{
                 if (data.get("LINARMCC")!=null && !data.get("LINARMCC").isEmpty()) OFrunCC(data.get("LINARMCC"), data.get("SRCF"), "rls/linARM/"+data.get("OUTF"), data.get("GLOBFLAGSL") + " " + data.get("GLOBFLAGS"));
@@ -245,25 +284,66 @@ import java.net.URL;
             WIN.join();
             WINARM.join();
         }
-        
+        // ==========================================
+        // === MULTITHREADING - MULTIFILE PROJECT ===
+        // ==========================================
         public static void MF(HashMap<String, String> data) throws IOException, InterruptedException{
             Thread LINARM = new Thread(() ->{
-                if (data.get("LINARMCC")!=null && !data.get("LINARMCC").isEmpty()) MFrunCC(data.get("LINARMCC"), data.get("SRCF"), "rls/linARM/"+data.get("OUTF"), "LINARM", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
+                if (data.get("LINARMCC")!=null && !data.get("LINARMCC").isEmpty()) MFrunCC(
+                        data.get("LINARMCC"),
+                        data.get("SRCF"),
+                        "rls/linARM/"+data.get("OUTF"),
+                        "LINARM",
+                        data.get("GLOBFLAGSL"),
+                        data.get("GLOBFLAGS"), data.get("LANG"));
             });
             Thread LIN = new Thread(() ->{
-                if (data.get("LIN64CC")!=null && !data.get("LIN64CC").isEmpty()) MFrunCC(data.get("LIN64CC"), data.get("SRCF"), "rls/lin/"+data.get("OUTF"), "LIN64", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
+                if (data.get("LIN64CC")!=null && !data.get("LIN64CC").isEmpty()) MFrunCC(
+                        data.get("LIN64CC"), data.get("SRCF"),
+                        "rls/lin/"+data.get("OUTF"),
+                        "LIN64",
+                        data.get("GLOBFLAGSL"),
+                        data.get("GLOBFLAGS"),
+                        data.get("LANG"));
             });
             Thread MACARM = new Thread(() ->{
-                if (data.get("MACARMCC")!=null && !data.get("MACARMCC").isEmpty()) MFrunCC(data.get("MACARMCC"), data.get("SRCF"), "rls/macARM/"+data.get("OUTF"), "MACARM", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
+                if (data.get("MACARMCC")!=null && !data.get("MACARMCC").isEmpty()) MFrunCC(
+                        data.get("MACARMCC"),
+                        data.get("SRCF"),
+                        "rls/macARM/"+data.get("OUTF"),
+                        "MACARM",
+                        data.get("GLOBFLAGSL"),
+                        data.get("GLOBFLAGS"),
+                        data.get("LANG"));
             });
             Thread MAC = new Thread(() ->{
-                if (data.get("MAC64CC")!=null && !data.get("MAC64CC").isEmpty())MFrunCC(data.get("MAC64CC"), data.get("SRCF"), "rls/mac/"+data.get("OUTF"), "MAC64", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
+                if (data.get("MAC64CC")!=null && !data.get("MAC64CC").isEmpty())MFrunCC(
+                        data.get("MAC64CC"),
+                        data.get("SRCF"),
+                        "rls/mac/"+data.get("OUTF"),
+                        "MAC64",
+                        data.get("GLOBFLAGSL"),
+                        data.get("GLOBFLAGS"),
+                        data.get("LANG"));
             });
             Thread WIN = new Thread(() ->{
-                if (data.get("WIN64CC")!=null && !data.get("WIN64CC").isEmpty())MFrunCC(data.get("WIN64CC"), data.get("SRCF"), "rls/win/"+data.get("OUTF"), "WIN64", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
+                if (data.get("WIN64CC")!=null && !data.get("WIN64CC").isEmpty())MFrunCC(
+                        data.get("WIN64CC"),
+                        data.get("SRCF"),
+                        "rls/win/"+data.get("OUTF"),
+                        "WIN64",
+                        data.get("GLOBFLAGSL"),
+                        data.get("GLOBFLAGS"),
+                        data.get("LANG"));
             });
             Thread WINARM = new Thread(() ->{
-                if (data.get("WINARMCC")!=null && !data.get("WINARMCC").isEmpty())MFrunCC(data.get("WINARMCC"), data.get("SRCF"), "rls/winARM/"+data.get("OUTF"), "WINARM", data.get("GLOBFLAGSL"), data.get("GLOBFLAGS"));
+                if (data.get("WINARMCC")!=null && !data.get("WINARMCC").isEmpty())MFrunCC(
+                        data.get("WINARMCC"),
+                        data.get("SRCF"),
+                        "rls/winARM/"+data.get("OUTF"),
+                        "WINARM", data.get("GLOBFLAGSL"),
+                        data.get("GLOBFLAGS"),
+                        data.get("LANG"));
             });
             LINARM.start();
             LIN.start();
@@ -279,6 +359,9 @@ import java.net.URL;
             WIN.join();
             WINARM.join();
         }
+        // ===================
+        // === MAIN METHOD ===
+        // ===================
         public static void main(String[] args) throws InterruptedException, IOException{
             HashMap<String, String> data = parse();
             String SRCT = data.get("SRCT");

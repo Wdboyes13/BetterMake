@@ -61,6 +61,7 @@ Here is an example of an `mk.xml`, All fields are required to be present, but do
     </Compilers>
     <FILE>MathProj</FILE> <!-- Executable Output Filename (By default, the folder name)-->
     <SRC>
+        <LANG>C</LANG> <!-- The project language (C, CPP, OBJC, OBJCPP)-->
         <Type>MultiFile</Type> <!-- The project type, MultiFile or OneFile -->
         <FILE>src</FILE> <!-- The Source Directory or Source File -->
     </SRC>
@@ -75,5 +76,7 @@ Here is an example of an `mk.xml`, All fields are required to be present, but do
 ✅Add a prompt (if selected) for Git Commit Message input  
 Add per-compiler flags  
 Add per-linker flags  
-C++ support  
+C++ support (Just Needs Testing)  
+ObjC++ support (Just Needs Testing)  
+ObjC support (Just Needs Testing)  
 Custom Commands Support
