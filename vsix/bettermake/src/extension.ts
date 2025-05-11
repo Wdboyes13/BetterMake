@@ -42,7 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
             if (projTypeArg !== null && langArg !== null) {
                 const terminal = vscode.window.createTerminal("BetterMake");
                 terminal.show();
-                terminal.sendText(`curl -fsSL https://tinyurl.com/BMAutoConf | bash -s <file.c> ${projTypeArg} ${langArg} ${projname} ${mainFile}`);
+                terminal.sendText(`curl -fsSL https://tinyurl.com/BMAutoConf | bash -s  ${projname} ${mainFile} ${projTypeArg} ${langArg} `);
             }
         }
     });
