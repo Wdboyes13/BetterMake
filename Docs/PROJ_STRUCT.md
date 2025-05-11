@@ -1,5 +1,6 @@
 # Project Structure (ALL Files/Dirs are REQUIRED)  
 ## SingleFile Project  
+```
 ROOT  
     |- mk.xml (Your Project Config)    
     |- main.c (Source File)    
@@ -10,8 +11,9 @@ ROOT
         |- macARM (macOS AArch64)  
         |- win (Windows x86_64)  
         |- winARM (Windows AArch64)  
-  
-## MultiFile Project  
+```
+## MultiFile Project 
+```
 ROOT    
     |- mk.xml (Your Project Config)    
     |- src/ (Source Folder)     
@@ -29,4 +31,4 @@ ROOT
         |- MACARM  
         |- WIN64  
         |- WINARM  
-  
+```
