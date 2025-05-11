@@ -6,6 +6,14 @@
 - 2. A list of what files were changed  
 - 3. A list of what needs changing in README.md (If Applicable)  
   
-### PLEASE Do Not edit the [pom.xml](bettermake/pom.xml)
-### PLEASE run `mvn package` before submitting  
+### PLEASE Do Not edit the [pom.xml](bettermake/pom.xml)  
+### PLEASE run `mvn package` before submitting (If you dont just tell us why and we will)  
+### Your change MUST be tested
+Example: Ran project with C++ file  
+```cpp
+#include <iostream>
+int main(){
+    std::cout << "Hello" << std::endl;
+}
+```
 ## ALWAYS Follow the [Style Guide](STYLE.md)
