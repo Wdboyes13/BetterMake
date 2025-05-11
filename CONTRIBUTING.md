@@ -16,4 +16,5 @@ int main(){
     std::cout << "Hello" << std::endl;
 }
 ```
-## ALWAYS Follow the [Style Guide](STYLE.md)
+## ALWAYS Follow the [Style Guide](STYLE.md)  
+## Happy Contributing :D [Source](bettermake/src/main/java/com/bettermake)
