@@ -107,6 +107,7 @@ public class CustCmds {
         for (String cmd : cmds){
             String[] SplCmd = splitCommand(cmd).toArray(new String[0]);
             ProcessBuilder CmdPB = new ProcessBuilder(SplCmd);
+            CmdPB.inheritIO();
             Process Proc = CmdPB.start();
             Proc.waitFor();
             System.out.println("Command: " + Arrays.toString(SplCmd) + " PID: " + Proc.pid() + " EXIT CODE: " + Proc.exitValue());
