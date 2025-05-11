@@ -72,11 +72,12 @@ Here is an example of an `mk.xml`, All fields are required to be present, but do
 </BMF>
 ```
 ## Coming SOON  
-✅Make it not print "Running git" if Git not setup  
-✅Add a prompt (if selected) for Git Commit Message input  
-Add per-compiler flags  
-Add per-linker flags  
-C++ support (Just Needs Testing)  
-ObjC++ support (Just Needs Testing)  
-ObjC support (Just Needs Testing)  
-Custom Commands Support
+- ✅Make it not print "Running git" if Git not setup  
+- ✅Add a prompt (if selected) for Git Commit Message input  
+- Add per-compiler flags  
+- Add per-linker flags  
+- C++ support (Just Needs Testing)  
+- ObjC++ support (Just Needs Testing)  
+- ObjC support (Just Needs Testing)  
+- Move to JAR File
+- Custom Commands Support
