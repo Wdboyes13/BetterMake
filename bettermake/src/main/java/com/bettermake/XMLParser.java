@@ -15,6 +15,8 @@ import java.io.File;
 import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
+
+
 // ===========================
 // === XML PARSING METHODS ===
 // ===========================
@@ -34,13 +36,13 @@ public class XMLParser {
         }
         return null;  // Return null if tag is not found
     }
-    // =====================
+    // ===================
     // === XML PARSING ===
-    // =====================
+    // ===================
     public static HashMap<String, String> parse(){
         HashMap<String, String> data = new HashMap<>();
         try {
-            File inputFile = new File("mk.xml");  // Your XML filename here
+            File inputFile = new File("mk.xml");
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             URL schemaLocation = new URI("https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd?v=2").toURL();
             Schema schema = factory.newSchema(schemaLocation);
@@ -58,7 +60,6 @@ public class XMLParser {
             NodeList CCs = doc.getElementsByTagName("Compilers");
             NodeList SRC = doc.getElementsByTagName("SRC");
             NodeList GIT = doc.getElementsByTagName("GIT");
-
             // Ensure the Compilers node exists
             if (CCs.getLength() > 0) {
                 Element compilersElement = (Element) CCs.item(0);
@@ -122,3 +123,25 @@ public class XMLParser {
         return data;
     }
 }
+
+// =======================
+// === XML Definitions ===
+// =======================
+
+// REPO - Git Repository URL
+// COMMSG - Git Commit Message (String or PROMPT)
+
+// LANG - Project Language (C, CPP, OBJC, OBJCPP)
+// SRCT - Project Type (OneFile or MultiFile)
+// SRCF - The Source file or directory
+// OUTF - The Final Binary Name
+
+// LINARMCC - Linux AArch64 Compiler
+// LIN64CC - Linux x86_64 Compiler
+// MACARMCC - macOS AArch64 Compiler
+// MAC64CC - macOS x86_64 Compiler
+// WIN64CC - Windows x86_64 Compiler
+// WINARMCC - Windows AArch64 Compiler
+
+// GLOBFLAGSL - Global Linker Flags
+// GLOBFLAGS - Global Compiler Flags

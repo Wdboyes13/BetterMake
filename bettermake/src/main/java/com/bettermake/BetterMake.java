@@ -57,11 +57,14 @@ public class BetterMake {
         // ===================
         // === MAIN METHOD ===
         // ===================
-        public static void main(String[] args) throws InterruptedException, IOException{
-            HashMap<String, String> data = XMLParser.parse();
-            String SRCT = data.get("SRCT");
-            if (SRCT.equals("OneFile")) OneFile.OF(data);
-            if (SRCT.equals("MultiFile")) MultiFile.MF(data);
-            gitUpdate(data);
+        public static void main(String[] args) throws Exception {
+            HashMap<String, String> data = XMLParser.parse(); // Run's initial parsing
+            if (data!=null) { // Makes Sure data isn't null
+                String SRCT = data.get("SRCT"); // Gets Source Type
+                if (SRCT.equals("OneFile")) OneFile.OF(data); // Run's Appropriate Method for OneFile
+                if (SRCT.equals("MultiFile")) MultiFile.MF(data); // Run's Appropriate Method for MultiFile
+                gitUpdate(data); // Updates Git Repo
+                CustCmds.runCmds(); // Run's custom commands
+            }
         }
 }
