@@ -9,12 +9,12 @@
   
   
 # Info
-### [Features](FEATURES.md)  
-### [Running](RUNNING.md)   
-### [Profiles](PROFILES.md)  
-### [Configuration](CONFIG.md)  
-  
-### [TODO](TODO.md)  
+### [Features](Docs/FEATURES.md)  
+### [Running](Docs/RUNNING.md)   
+### [Profiles](Docs/PROFILES.md)  
+### [Configuration](Docs/CONFIG.md)  
+### [Project Structure](Docs/PROJ_STRUCT.md)
+### [TODO](Docs/TODO.md)  
 ### [Contributing Guide](CONTRIBUTING.md)  
-### [Style Guide](STYLE.md)  
+### [Style Guide](Docs/STYLE.md)  
   
