@@ -55,7 +55,7 @@ MF() {
     </SRC>
     <GIT>
         <REPO></REPO>
-        <COM-MSG></COM-MSG>
+        <COMMSG></COM-MSG>
     </GIT>
 </BMF>
 EOF
@@ -95,7 +95,7 @@ OF() {
     </SRC>
     <GIT>
         <REPO></REPO>
-        <COM-MSG></COM-MSG>
+        <COMMSG></COM-MSG>
     </GIT>
 </BMF>
 EOF

@@ -69,7 +69,7 @@ Here is an example of an `mk.xml`, All fields are required to be present, but do
     </SRC>
     <GIT>
         <REPO></REPO> <!-- Git Commit Message -->
-        <COM-MSG></COM-MSG> <!-- Git Commit Message -->
+        <COMMSG></COMMSG> <!-- Git Commit Message -->
     </GIT>
 </BMF>
 ```

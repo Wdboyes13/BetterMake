@@ -107,7 +107,7 @@ public class XMLParser {
             } else {System.out.println("Project Data Tags Invalid"); System.exit(1);}
             if (GIT.getLength() > 0){
                 String repo = doc.getElementsByTagName("REPO").item(0).getTextContent();
-                String msg = doc.getElementsByTagName("COM-MSG").item(0).getTextContent();
+                String msg = doc.getElementsByTagName("COMMSG").item(0).getTextContent();
                 System.out.println("Git Repo: " + repo);
                 System.out.println("Git Commit Message: " + msg);
                 data.put("REPO", repo);
