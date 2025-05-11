@@ -12,16 +12,16 @@ __Have something you'd like to see added, make an issue! or email [willdev2025@o
   
 # Info  
 ### General
-> [Features](Docs/FEATURES.md)  
-> [Running](Docs/RUNNING.md)   
+> ✅ [Features](Docs/FEATURES.md)  
+> 🏎️ [Running](Docs/RUNNING.md)   
 ### Configuration  
-> [Profiles](Docs/PROFILES.md)  
-> [Configuration](Docs/CONFIG.md)  
-> [Project Structure](Docs/PROJ_STRUCT.md)
+> 🪪 [Profiles](Docs/PROFILES.md)  
+> ⚙️ [Configuration](Docs/CONFIG.md)  
+> 🏛️ [Project Structure](Docs/PROJ_STRUCT.md)
 ### Dev
-> [TODO](Docs/TODO.md)  
-> [Contributing Guide](CONTRIBUTING.md)  
-> [Style Guide](Docs/STYLE.md)  
+> 🧾 [TODO](Docs/TODO.md)  
+> 👷‍♂️ [Contributing Guide](CONTRIBUTING.md)  
+> 📘 [Style Guide](Docs/STYLE.md)  
 
 # [License](LICENSE)
 BetterMake - A Build Tool for C, C++, ObjC, ObjC++  
