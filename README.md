@@ -1,6 +1,6 @@
 # BetterMake  
-### A Build tool for C C++ ObjC & ObjC++ projects.   
-### Have something you'd like to see added, make an issue! or email [willdev2025@outlook.com](mailto:willdev2025@outlook.com)
+** A Build tool for C C++ ObjC & ObjC++ projects. **  
+** Have something you'd like to see added, make an issue! or email [willdev2025@outlook.com](mailto:willdev2025@outlook.com) **
   
 # Required
 > [java (21 or Later)](https://adoptium.net/temurin/releases/?package=jdk&version=21)  
