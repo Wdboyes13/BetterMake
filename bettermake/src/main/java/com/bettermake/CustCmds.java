@@ -104,14 +104,17 @@ public class CustCmds {
     // ==============================
     public static void runCmds() throws Exception{
         String[] cmds = getCmds();
-        for (String cmd : cmds){
+        for (String cmd : cmds) {
             if (cmd != null && !cmd.trim().isEmpty()) {
-                String[] SplCmd = splitCommand(cmd).toArray(new String[0]);
-                ProcessBuilder CmdPB = new ProcessBuilder(SplCmd);
-                CmdPB.inheritIO();
-                Process Proc = CmdPB.start();
-                Proc.waitFor();
-                System.out.println("Command: " + Arrays.toString(SplCmd) + " PID: " + Proc.pid() + " EXIT CODE: " + Proc.exitValue());
+                List<String> split = splitCommand(cmd);
+                if (!split.isEmpty()) {
+                    String[] SplCmd = split.toArray(new String[0]);
+                    ProcessBuilder CmdPB = new ProcessBuilder(SplCmd);
+                    CmdPB.inheritIO();
+                    Process Proc = CmdPB.start();
+                    Proc.waitFor();
+                    System.out.println("Command: " + Arrays.toString(SplCmd) + " PID: " + Proc.pid() + " EXIT CODE: " + Proc.exitValue());
+                }
             }
         }
     }
