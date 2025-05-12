@@ -105,7 +105,7 @@ public class CustCmds {
     public static void runCmds() throws Exception{
         String[] cmds = getCmds();
         for (String cmd : cmds){
-            if (!cmd.isEmpty() && cmd!=null) {
+            if (cmd != null && !cmd.trim().isEmpty()) {
                 String[] SplCmd = splitCommand(cmd).toArray(new String[0]);
                 ProcessBuilder CmdPB = new ProcessBuilder(SplCmd);
                 CmdPB.inheritIO();
