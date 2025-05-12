@@ -1,6 +1,8 @@
 # To run
 ## To see info on Project Profiles go to [PROFILES.md](PROFILES.md)
-To make a new MultiFile Project  (May request a proxy, hit enter, ignore error)
+To make a new MultiFile Project  
+> [!WARNING]  
+> May request a proxy, hit enter, ignore error  
 Replace <Lang> with OBJC, OBJCPP, C, or CPP
 Replace <project-name> With your project name (Name of project folder & final binary)
 Replace <file.c> with what you want your first file to be named
@@ -8,7 +10,9 @@ Replace <file.c> with what you want your first file to be named
 curl -fsSL https://tinyurl.com/BMAutoConf | bash -s <project-name> <file.c> MF <Lang> <OPTIONAL: profile-name>
 ```  
 
-To make a new SingleFile Project  (May request a proxy, hit enter, ignore error)
+To make a new SingleFile Project  
+> [!WARNING]  
+> May request a proxy, hit enter, ignore error   
 Replace <Lang> with OBJC, OBJCPP, C, or CPP
 Replace <project-name> With your project name (Name of project folder & final binary)
 Replace <file.c> with what you want your source file to be named
@@ -16,7 +20,7 @@ Replace <file.c> with what you want your source file to be named
 curl -fsSL https://tinyurl.com/BMAutoConf | bash -s <project-name> <file.c> OF <Lang> <OPTIONAL: profile-name>
 ```  
 
-Download: [BetterMake.jar](https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/bettermake/target/BetterMake.jar)
+Download: [BetterMake.jar](https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/bettermake/target/BetterMake.jar)  
 VS Code Extension: [bettermake-1.0.0.vsix](https://github.com/Wdboyes13/BetterMake/raw/refs/heads/main/vsix/bettermake/bettermake-1.0.0.vsix)
 
 To start build  
