@@ -82,7 +82,7 @@ public class XMLParser {
             if (CCs.getLength() > 0) {
                 Element compilersElement = (Element) CCs.item(0);
 
-                // Now safely try to get ARM and SF nodes under Linux and Mac
+                // Now safely try to get ARM and SF nodes under Linux Mac and Windows
                 String linuxArm = getTagContent(compilersElement, "Linux", "ARM");
                 String linux64 = getTagContent(compilersElement, "Linux", "SF");
                 String macArm = getTagContent(compilersElement, "Mac", "ARM");
@@ -111,7 +111,7 @@ public class XMLParser {
                 data.put("GLOBFLAGS", globComps);
             } else {System.out.println("Compiler Tags Invalid"); System.exit(1);}
 
-            String fileName = doc.getElementsByTagName("FILE").item(0).getTextContent(); // 2nd <FILE>
+            String fileName = doc.getElementsByTagName("FILE").item(0).getTextContent(); // 1nd <FILE>
             if (SRC.getLength() > 0){
                 Element srcElement = (Element) SRC.item(0);
                 String lang = srcElement.getElementsByTagName("LANG").item(0).getTextContent();

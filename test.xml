@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BMF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd">
+    <Compilers>
+        <Mac>
+            <ARM></ARM>
+            <SF></SF>
+        </Mac>
+        <Linux>
+            <ARM></ARM>
+            <SF></SF>
+        </Linux>
+        <Win>
+            <ARM></ARM>
+            <SF></SF>
+        </Win>
+        <flags>
+            <globalLink></globalLink>
+            <globalComp></globalComp>
+        </flags>
+    </Compilers>
+    <FILE>IMMAKINGTHISTOGETMKXML</FILE>
+    <SRC>
+        <LANG>C</LANG>
+        <Type>OneFile</Type>
+        <FILE>main.c</FILE>
+    </SRC>
+    <GIT>
+        <REPO></REPO>
+        <COMMSG></COMMSG>
+    </GIT>
+    <CMDS>
+        <CMD></CMD>
+    </CMDS>
+</BMF>
