@@ -7,7 +7,7 @@ __Have something you'd like to see added, make an issue! or email [willdev2025@o
 > 
 > [java (21 or Later)](https://adoptium.net/temurin/releases/?package=jdk&version=21)  
 > [git (if using git)](https://git-scm.com/downloads)  
-> [bash (if using git or project generator)](https://www.gnu.org/software/bash/)
+> [bash (if using git or project generator)](https://www.gnu.org/software/bash/)  
 > [Curl (If using project generator)](https://curl.se/)
   
 # Info  
