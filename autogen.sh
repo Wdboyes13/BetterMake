@@ -26,7 +26,7 @@ LANG="$4"
 curl -sU
 mkdir "$1"
 cd "$1" || exit 1
-curl -sL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/bettermake/target/BetterMake.jar -o BetterMake.jar
+curl -sL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/target/BetterMake.jar -o BetterMake.jar
 if [ -n "$5" ]; then
     PROF="$5"
     if [ -f "$HOME/.bmf-profs/$PROF" ]; then
@@ -59,8 +59,8 @@ MF() {
             <SF>$WIN64CC</SF>
         </Win>
         <flags>
-            <globalLink></globalLink>
-            <globalComp></globalComp>
+            <globalLink>$LINKFLAGS</globalLink>
+            <globalComp>$COMPFLAGS</globalComp>
         </flags>
     </Compilers>
     <FILE>$PROJ_NAME</FILE>
@@ -102,8 +102,8 @@ OF() {
             <SF>$WIN64CC</SF>
         </Win>
         <flags>
-            <globalLink></globalLink>
-            <globalComp></globalComp>
+            <globalLink>$LINKFLAGS</globalLink>
+            <globalComp>$COMPFLAGS</globalComp>
         </flags>
     </Compilers>
     <FILE>$PROJ_NAME</FILE>

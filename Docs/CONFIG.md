@@ -3,7 +3,7 @@
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <BMF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/bettermake.src.main.java.com.bettermake.BetterMake/refs/heads/main/BMF.xsd">
+     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd">
     <Compilers>
         <Mac>
             <ARM>clang</ARM> <!-- macOS AArch64 C Compiler -->
