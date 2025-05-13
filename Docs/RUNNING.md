@@ -35,5 +35,5 @@ curl -fsSL https://tinyurl.com/BMAutoConf | bash -s <project-name> <file.c> OF <
 ## To start build  
 `java -jar BetterMake.jar`  
   
-__Download: [BetterMake.jar](https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/bettermake/target/BetterMake.jar)__    
+__Download: [BetterMake.jar](https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/target/BetterMake.jar)__    
 __VS Code Extension: [bettermake-1.0.0.vsix](https://github.com/Wdboyes13/BetterMake/raw/refs/heads/main/vsix/bettermake/bettermake-1.0.0.vsix)__
