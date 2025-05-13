@@ -4,7 +4,7 @@ Go to [FEATURES.md](FEATURES.md)
 ## In Testing
 - None
 ## To-Do (Sorted By Priority)
-- Extend Profiles (Lang preset, Maybe flags preset)
+- ~~Extend Profiles (Lang preset, Maybe flags preset)~~ DONE
   
 >[!IMPORTANT]
 >We have made the decision to not do platform specific flags for these reasons  
