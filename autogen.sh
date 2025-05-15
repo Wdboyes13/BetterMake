@@ -17,14 +17,14 @@
 
 #TODO: Make script interactive
 
-if [ -z "$1" ]; then
-    echo "Usage: $0 <project-name> <source-file.c / source-dir> <project-type> <Lang> <profile-name> [-i for interactive]"
-    exit 1
-fi
-
 if [ "$1" == "-i" ]; then
     interactive
     exit 0
+fi
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <project-name> <source-file.c / source-dir> <project-type> <Lang> <profile-name> [-i for interactive]"
+    exit 1
 fi
 
 # Continue with non-interactive mode

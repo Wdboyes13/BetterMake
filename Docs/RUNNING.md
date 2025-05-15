@@ -10,7 +10,7 @@
   
 Run 
 ```sh
-bash <(curl -fsSL https://tinyurl.com/BMAutoConf) -i
+w
 ```
 
 ## To make a new MultiFile Project  
