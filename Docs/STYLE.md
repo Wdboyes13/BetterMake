@@ -35,6 +35,14 @@ If there is something that needs to be done, include a notice at the top of your
 // TODO: Write what needs to be done
 ```
   
+Please add a description about what set your imports and from, and their general purpose.  
+Examples:  
+```java
+// Java SE Libraries (IO, Network, Regex, Lists)
+// JAVA EE XML Libraries (Schema and File parsing)
+// W3C DOM Parsing Libraries
+```  
+  
 GENERAL FILE STRUCTURE
 ```
 imports

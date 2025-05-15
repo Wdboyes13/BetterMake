@@ -17,6 +17,7 @@ along with this program.  If not, see https://www.gnu.org/licenses/.
 
 package com.bettermake;
 
+// Java SE Libraries (IO, Lists, Input, Output)
 import java.nio.file.*;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,7 @@ public class BetterMake {
         // =======================
         // === FINDING C FILES ===
         // =======================
-        public static List<Path> findFiles(String rootDir, String lang) throws IOException {
+        public static List<Path> findCFiles(String rootDir, String lang) throws IOException {
             List<String> extensions;
             switch (lang) {
                 case "C":

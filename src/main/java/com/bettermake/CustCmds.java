@@ -17,10 +17,12 @@ along with this program.  If not, see https://www.gnu.org/licenses/.
 
 package com.bettermake;
 
+// W3C DOM Parsing Libraries
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+// JAVA EE XML Libraries (Schema and File parsing)
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,6 +31,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+// Java SE Libraries (IO, Network, Regex, Lists)
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
