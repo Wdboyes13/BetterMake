@@ -31,13 +31,13 @@ fi
 
 MF() {
     local proj_name="$1"
-    local source_dir="$2"
+    local source_dir="src"
     local lang="$3"
-
+    local source_file="$2"
     mkdir -p rls/{lin,linARM,mac,macARM,win,winARM}
     mkdir -p build/{LINARM,LIN64,MAC64,MACARM,WIN64,WINARM}
     mkdir -p "$source_dir"
-    touch "$source_dir/main.$lang" # or just keep touch of one main file
+    touch "$source_dir/$source_file" # or just keep touch of one main file
 
     cat <<EOF > mk.xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -166,12 +166,12 @@ fi
 if [ -z "$1" ]; then
     echo "Usage:"
     echo "  $0 -i                # interactive mode"
-    echo "  $0 <project-name> <source-file/dir> <project-type> <lang> [profile-name]"
+    echo "  $0 <project-name> <source-file> <project-type> <lang> [profile-name]"
     exit 1
 fi
 
 if [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]; then
-    echo "Usage: $0 <project-name> <source-file/dir> <project-type> <lang> [profile-name]"
+    echo "Usage: $0 <project-name> <source-file> <project-type> <lang> [profile-name]"
     exit 1
 fi
 
