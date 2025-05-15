@@ -188,4 +188,4 @@ else
     exit 2
 fi
 
-echo "🎺 Skibidi bop bop bop! Project '$PROJ_NAME' setup complete! 🥁"
+echo "Project '$PROJ_NAME' setup complete!"
