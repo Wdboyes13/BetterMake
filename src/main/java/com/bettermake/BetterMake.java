@@ -33,18 +33,29 @@ public class BetterMake {
         // =======================
         // === FINDING C FILES ===
         // =======================
-        public static List<Path> findCFiles(String rootDir, String lang) throws IOException {
-                String langext;
-                if (lang.equals("C")) langext = ".c";
-                else if (lang.equals("CPP")) langext = ".cpp";
-                else if (lang.equals("OBJC")) langext = ".m";
-                else if (lang.equals("OBJCPP")) langext = ".mm";
-                else {
-                    langext = new String();
-                }
+        public static List<Path> findFiles(String rootDir, String lang) throws IOException {
+            List<String> extensions;
+            switch (lang) {
+                case "C":
+                    extensions = List.of(".c");
+                    break;
+                case "CPP":
+                    extensions = List.of(".cpp", ".cc", ".cxx");
+                    break;
+                case "OBJC":
+                    extensions = List.of(".m");
+                    break;
+                case "OBJCPP":
+                    extensions = List.of(".mm");
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unsupported language: " + lang);
+            }
+
             return Files.walk(Paths.get(rootDir))
-                        .filter(p -> p.toString().endsWith(langext))
-                        .collect(Collectors.toList());
+                    .filter(p -> extensions.stream()
+                            .anyMatch(ext -> p.toString().toLowerCase().endsWith(ext)))
+                    .collect(Collectors.toList());
         }
 
         // ====================
