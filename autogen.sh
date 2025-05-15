@@ -28,7 +28,7 @@ if [ "$1" == "-i" ]; then
 fi
 
 # Continue with non-interactive mode
-if [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ] || [ -z "$5" ]; then
+if [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]; then
     echo "Usage: $0 <project-name> <source-file.c / source-dir> <project-type> <Lang> <profile-name>"
     exit 1
 fi
