@@ -15,32 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see https://www.gnu.org/licenses/.
 
-#TODO: Make script interactive
-
-if [ "$1" == "-i" ]; then
-    interactive
-    exit 0
-fi
-
-if [ -z "$1" ]; then
-    echo "Usage: $0 <project-name> <source-file.c / source-dir> <project-type> <Lang> <profile-name> [-i for interactive]"
-    exit 1
-fi
-
-# Continue with non-interactive mode
-if [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]; then
-    echo "Usage: $0 <project-name> <source-file.c / source-dir> <project-type> <Lang> <profile-name>"
-    exit 1
-fi
-
 PROJ_NAME="$1"
 SOURCE="$2"
 PROJ_TYPE="$3"
 LANG="$4"
-curl -sU
-mkdir "$1"
-cd "$1" || exit 1
-curl -sL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/target/BetterMake.jar -o BetterMake.jar
+
 if [ -n "$5" ]; then
     PROF="$5"
     if [ -f "$HOME/.bmf-profs/$PROF" ]; then
@@ -49,6 +28,103 @@ if [ -n "$5" ]; then
         echo "Profile $PROF not found. Using default settings."
     fi
 fi
+
+MF() {
+    local proj_name="$1"
+    local source_dir="$2"
+    local lang="$3"
+
+    mkdir -p rls/{lin,linARM,mac,macARM,win,winARM}
+    mkdir -p build/{LINARM,LIN64,MAC64,MACARM,WIN64,WINARM}
+    mkdir -p "$source_dir"
+    touch "$source_dir/main.$lang" # or just keep touch of one main file
+
+    cat <<EOF > mk.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<BMF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd">
+    <Compilers>
+        <Mac>
+            <ARM>$MACARMCC</ARM>
+            <SF>$MAC64CC</SF>
+        </Mac>
+        <Linux>
+            <ARM>$LINARMCC</ARM>
+            <SF>$LIN64CC</SF>
+        </Linux>
+        <Win>
+            <ARM>$WINARMCC</ARM>
+            <SF>$WIN64CC</SF>
+        </Win>
+        <flags>
+            <globalLink>$LINKFLAGS</globalLink>
+            <globalComp>$COMPFLAGS</globalComp>
+        </flags>
+    </Compilers>
+    <FILE>$proj_name</FILE>
+    <SRC>
+        <LANG>$lang</LANG>
+        <Type>MultiFile</Type>
+        <FILE>$source_dir</FILE>
+    </SRC>
+    <GIT>
+        <REPO></REPO>
+        <COMMSG></COMMSG>
+    </GIT>
+    <CMDS>
+        <CMD></CMD>
+    </CMDS>
+</BMF>
+EOF
+}
+
+OF() {
+    local proj_name="$1"
+    local source_file="$2"
+    local lang="$3"
+
+    mkdir -p rls/{lin,linARM,mac,macARM,win,winARM}
+    touch "$source_file"
+
+    cat <<EOF > mk.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<BMF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd">
+    <Compilers>
+        <Mac>
+            <ARM>$MACARMCC</ARM>
+            <SF>$MAC64CC</SF>
+        </Mac>
+        <Linux>
+            <ARM>$LINARMCC</ARM>
+            <SF>$LIN64CC</SF>
+        </Linux>
+        <Win>
+            <ARM>$WINARMCC</ARM>
+            <SF>$WIN64CC</SF>
+        </Win>
+        <flags>
+            <globalLink>$LINKFLAGS</globalLink>
+            <globalComp>$COMPFLAGS</globalComp>
+        </flags>
+    </Compilers>
+    <FILE>$proj_name</FILE>
+    <SRC>
+        <LANG>$lang</LANG>
+        <Type>OneFile</Type>
+        <FILE>$source_file</FILE>
+    </SRC>
+    <GIT>
+        <REPO></REPO>
+        <COMMSG></COMMSG>
+    </GIT>
+    <CMDS>
+        <CMD></CMD>
+    </CMDS>
+</BMF>
+EOF
+}
+
 interactive() {
   echo -n "(No Space String) Enter project name: "
   read PROJ_NAME
@@ -77,100 +153,39 @@ interactive() {
     read SOURCE_DIR
     MF "$PROJ_NAME" "$SOURCE_DIR" "$LANG"
   fi
-}
-MF() {
-    mkdir -p rls/{lin,linARM,mac,macARM,win,winARM}
-    mkdir -p build/{LINARM,LIN64,MAC64,MACARM,WIN64,WINARM}
-    mkdir src
-    touch src/$SOURCE
-    cat <<EOF >> mk.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<BMF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd">
-    <Compilers>
-        <Mac>
-            <ARM>$MACARMCC</ARM>
-            <SF>$MAC64CC</SF>
-        </Mac>
-        <Linux>
-            <ARM>$LINARMCC</ARM>
-            <SF>$LIN64CC</SF>
-        </Linux>
-        <Win>
-            <ARM>$WINARMCC</ARM>
-            <SF>$WIN64CC</SF>
-        </Win>
-        <flags>
-            <globalLink>$LINKFLAGS</globalLink>
-            <globalComp>$COMPFLAGS</globalComp>
-        </flags>
-    </Compilers>
-    <FILE>$PROJ_NAME</FILE>
-    <SRC>
-        <LANG>$LANG</LANG>
-        <Type>MultiFile</Type>
-        <FILE>src</FILE>
-    </SRC>
-    <GIT>
-        <REPO></REPO>
-        <COMMSG></COMMSG>
-    </GIT>
-    <CMDS>
-        <CMD></CMD>
-    </CMDS>
-</BMF>
-EOF
+
+  echo "🎺 Skibidi bop bop bop! Project '$PROJ_NAME' ready to rock! 🥁"
 }
 
-OF() {
-    mkdir -p rls/{lin,linARM,mac,macARM,win,winARM}
-    touch "$SOURCE"
+# Main entry point
+if [ "$1" == "-i" ]; then
+    interactive
+    exit 0
+fi
 
-    cat <<EOF >> mk.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<BMF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/BMF.xsd">
-    <Compilers>
-        <Mac>
-            <ARM>$MACARMCC</ARM>
-            <SF>$MAC64CC</SF>
-        </Mac>
-        <Linux>
-            <ARM>$LINARMCC</ARM>
-            <SF>$LIN64CC</SF>
-        </Linux>
-        <Win>
-            <ARM>$WINARMCC</ARM>
-            <SF>$WIN64CC</SF>
-        </Win>
-        <flags>
-            <globalLink>$LINKFLAGS</globalLink>
-            <globalComp>$COMPFLAGS</globalComp>
-        </flags>
-    </Compilers>
-    <FILE>$PROJ_NAME</FILE>
-    <SRC>
-        <LANG>$LANG</LANG>
-        <Type>OneFile</Type>
-        <FILE>$SOURCE</FILE>
-    </SRC>
-    <GIT>
-        <REPO></REPO>
-        <COMMSG></COMMSG>
-    </GIT>
-    <CMDS>
-        <CMD></CMD>
-    </CMDS>
-</BMF>
-EOF
-}
+if [ -z "$1" ]; then
+    echo "Usage:"
+    echo "  $0 -i                # interactive mode"
+    echo "  $0 <project-name> <source-file/dir> <project-type> <lang> [profile-name]"
+    exit 1
+fi
 
-# Call correct function
+if [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]; then
+    echo "Usage: $0 <project-name> <source-file/dir> <project-type> <lang> [profile-name]"
+    exit 1
+fi
+
+mkdir -p "$PROJ_NAME"
+cd "$PROJ_NAME" || exit 1
+curl -sL https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/target/BetterMake.jar -o BetterMake.jar
+
 if [ "$PROJ_TYPE" = "MF" ]; then
-    MF
+    MF "$PROJ_NAME" "$SOURCE" "$LANG"
 elif [ "$PROJ_TYPE" = "OF" ]; then
-    OF
+    OF "$PROJ_NAME" "$SOURCE" "$LANG"
 else
     echo "Unknown project type: $PROJ_TYPE (expected MF or OF)"
     exit 2
 fi
+
+echo "🎺 Skibidi bop bop bop! Project '$PROJ_NAME' setup complete! 🥁"
