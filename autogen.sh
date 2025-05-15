@@ -154,7 +154,7 @@ interactive() {
     MF "$PROJ_NAME" "$SOURCE_DIR" "$LANG"
   fi
 
-  echo "🎺 Skibidi bop bop bop! Project '$PROJ_NAME' ready to rock! 🥁"
+  echo "Project '$PROJ_NAME' ready"
 }
 
 # Main entry point
