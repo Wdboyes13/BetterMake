@@ -16,10 +16,23 @@
 # along with this program.  If not, see https://www.gnu.org/licenses/.
 
 #TODO: Make script interactive
-if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]; then
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <project-name> <source-file.c / source-dir> <project-type> <Lang> <profile-name> [-i for interactive]"
+    exit 1
+fi
+
+if [ "$1" == "-i" ]; then
+    interactive
+    exit 0
+fi
+
+# Continue with non-interactive mode
+if [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ] || [ -z "$5" ]; then
     echo "Usage: $0 <project-name> <source-file.c / source-dir> <project-type> <Lang> <profile-name>"
     exit 1
 fi
+
 PROJ_NAME="$1"
 SOURCE="$2"
 PROJ_TYPE="$3"
@@ -36,7 +49,35 @@ if [ -n "$5" ]; then
         echo "Profile $PROF not found. Using default settings."
     fi
 fi
+interactive() {
+  echo -n "(No Space String) Enter project name: "
+  read PROJ_NAME
+  echo -n "(OF or MF) Enter Project type: "
+  read PROJ_TYPE
+  echo -n "(C CPP OBJC OBJCPP) Enter Project Language: "
+  read LANG
 
+  # Validate input
+  if [[ "$PROJ_TYPE" != "OF" && "$PROJ_TYPE" != "MF" ]]; then
+    echo "Invalid project type. Must be OF or MF."
+    return 1
+  fi
+
+  if [[ "$LANG" != "C" && "$LANG" != "CPP" && "$LANG" != "OBJC" && "$LANG" != "OBJCPP" ]]; then
+    echo "Invalid language. Must be C, CPP, OBJC, or OBJCPP."
+    return 1
+  fi
+
+  if [ "$PROJ_TYPE" == "OF" ]; then
+    echo -n "(Filename) Enter Source FileName: "
+    read SOURCE
+    OF "$PROJ_NAME" "$SOURCE" "$LANG"
+  elif [ "$PROJ_TYPE" == "MF" ]; then
+    echo -n "(Directory) Enter Source Directory: "
+    read SOURCE_DIR
+    MF "$PROJ_NAME" "$SOURCE_DIR" "$LANG"
+  fi
+}
 MF() {
     mkdir -p rls/{lin,linARM,mac,macARM,win,winARM}
     mkdir -p build/{LINARM,LIN64,MAC64,MACARM,WIN64,WINARM}
