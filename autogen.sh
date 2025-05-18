@@ -145,13 +145,9 @@ interactive() {
   fi
 
   if [ "$PROJ_TYPE" == "OF" ]; then
-    echo -n "(Filename) Enter Source FileName: "
-    read SOURCE
-    OF "$PROJ_NAME" "$SOURCE" "$LANG"
+    bash <(curl -fsSL https://tinyurl.com/BMAutoConf) "$PROJ_NAME" main.c OF "$LANG"
   elif [ "$PROJ_TYPE" == "MF" ]; then
-    echo -n "(Directory) Enter Source Directory: "
-    read SOURCE_DIR
-    MF "$PROJ_NAME" "$SOURCE_DIR" "$LANG"
+    bash <(curl -fsSL https://tinyurl.com/BMAutoConf) "$PROJ_NAME" main.c MF "$LANG"
   fi
 
   echo "Project '$PROJ_NAME' ready"
