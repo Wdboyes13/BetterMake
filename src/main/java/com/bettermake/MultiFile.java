@@ -96,6 +96,7 @@ public class MultiFile {
     // ==========================================
     public static void MF(HashMap<String, String> data) throws IOException, InterruptedException{
         Thread LINARM = new Thread(() ->{
+            long startTime = System.nanoTime();
             if (data.get("LINARMCC")!=null && !data.get("LINARMCC").isEmpty()) MFrunCC(
                     data.get("LINARMCC"),
                     data.get("SRCF"),
@@ -103,8 +104,13 @@ public class MultiFile {
                     "LINARM",
                     data.get("GLOBFLAGSL"),
                     data.get("GLOBFLAGS"), data.get("LANG"));
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+            double durationSeconds = (endTime - startTime) / 1_000_000_000.0;
+            System.out.println("LINARM ran for " + durationSeconds + " Seconds");
         });
         Thread LIN = new Thread(() ->{
+            long startTime = System.nanoTime();
             if (data.get("LIN64CC")!=null && !data.get("LIN64CC").isEmpty()) MFrunCC(
                     data.get("LIN64CC"), data.get("SRCF"),
                     "rls/lin/"+data.get("OUTF"),
@@ -112,8 +118,13 @@ public class MultiFile {
                     data.get("GLOBFLAGSL"),
                     data.get("GLOBFLAGS"),
                     data.get("LANG"));
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+            double durationSeconds = (endTime - startTime) / 1_000_000_000.0;
+            System.out.println("LIN64 ran for " + durationSeconds + " Seconds");
         });
         Thread MACARM = new Thread(() ->{
+            long startTime = System.nanoTime();
             if (data.get("MACARMCC")!=null && !data.get("MACARMCC").isEmpty()) MFrunCC(
                     data.get("MACARMCC"),
                     data.get("SRCF"),
@@ -122,8 +133,13 @@ public class MultiFile {
                     data.get("GLOBFLAGSL"),
                     data.get("GLOBFLAGS"),
                     data.get("LANG"));
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+            double durationSeconds = (endTime - startTime) / 1_000_000_000.0;
+            System.out.println("MACARM ran for " + durationSeconds + " Seconds");
         });
         Thread MAC = new Thread(() ->{
+            long startTime = System.nanoTime();
             if (data.get("MAC64CC")!=null && !data.get("MAC64CC").isEmpty())MFrunCC(
                     data.get("MAC64CC"),
                     data.get("SRCF"),
@@ -132,8 +148,13 @@ public class MultiFile {
                     data.get("GLOBFLAGSL"),
                     data.get("GLOBFLAGS"),
                     data.get("LANG"));
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+            double durationSeconds = (endTime - startTime) / 1_000_000_000.0;
+            System.out.println("MAC64 ran for " + durationSeconds + " Seconds");
         });
         Thread WIN = new Thread(() ->{
+            long startTime = System.nanoTime();
             if (data.get("WIN64CC")!=null && !data.get("WIN64CC").isEmpty())MFrunCC(
                     data.get("WIN64CC"),
                     data.get("SRCF"),
@@ -142,8 +163,13 @@ public class MultiFile {
                     data.get("GLOBFLAGSL"),
                     data.get("GLOBFLAGS"),
                     data.get("LANG"));
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+            double durationSeconds = (endTime - startTime) / 1_000_000_000.0;
+            System.out.println("WIN64 ran for " + durationSeconds + " Seconds");
         });
         Thread WINARM = new Thread(() ->{
+            long startTime = System.nanoTime();
             if (data.get("WINARMCC")!=null && !data.get("WINARMCC").isEmpty())MFrunCC(
                     data.get("WINARMCC"),
                     data.get("SRCF"),
@@ -151,6 +177,10 @@ public class MultiFile {
                     "WINARM", data.get("GLOBFLAGSL"),
                     data.get("GLOBFLAGS"),
                     data.get("LANG"));
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+            double durationSeconds = (endTime - startTime) / 1_000_000_000.0;
+            System.out.println("WINARM ran for " + durationSeconds + " Seconds");
         });
         LINARM.start();
         LIN.start();
