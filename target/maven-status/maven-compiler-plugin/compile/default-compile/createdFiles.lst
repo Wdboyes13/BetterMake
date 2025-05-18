@@ -1,5 +1,5 @@
 com/bettermake/XMLParser.class
-com/bettermake/MultiFile.class
 com/bettermake/BetterMake.class
-com/bettermake/OneFile.class
+com/bettermake/MultiFile.class
 com/bettermake/CustCmds.class
+com/bettermake/OneFile.class
