@@ -75,4 +75,4 @@ __Download: [BetterMake.jar](https://raw.githubusercontent.com/Wdboyes13/BetterM
 > [Curl](https://curl.se/)  
 > [GNU Coreutils](https://www.gnu.org/software/coreutils/)  
 In the top-right of the VS Code Extensions Menu, click the 3 Dots, and Click "Install from VSIX" and select the File  
-[bettermake-1.0.0.vsix](https://github.com/Wdboyes13/BetterMake/raw/refs/heads/main/vsix/bettermake/bettermake-1.0.0.vsix)__
+__[bettermake-1.0.0.vsix](https://github.com/Wdboyes13/BetterMake/raw/refs/heads/main/vsix/bettermake/bettermake-1.0.0.vsix)__
