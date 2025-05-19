@@ -4,7 +4,7 @@ Go to [FEATURES.md](FEATURES.md)
 ## In Testing
 - None
 ## To-Do (Sorted By Priority)
-- Move it to a CLI built in C++ (For more support on Windows & only requiring Java)
+- Move it to a CLI built in ~~C++~~ JAVA (For more support on Windows & only requiring Java)
   
 >[!IMPORTANT]
 >We have made the decision to not do platform specific flags for these reasons (Temporarily)  
