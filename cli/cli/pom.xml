@@ -16,6 +16,7 @@
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
     <mainClass>com.bettermake.App</mainClass>
+    <finalName>bm-cli</finalName>
   </properties>
   <build>
     <plugins>

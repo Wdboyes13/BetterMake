@@ -17,8 +17,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/.
 */
 
-import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 import com.bettermake.excepts.*;
 import java.net.URI;
@@ -40,15 +42,9 @@ public class App {
 
             Files.createDirectory(Paths.get(name));
 
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/target/BetterMake.jar")) // <-- replace me
-                    .build();
-
+            InputStream in = new URL("https://raw.githubusercontent.com/Wdboyes13/BetterMake/refs/heads/main/target/BetterMake.jar").openStream();
             Path output = Paths.get(name+"/BetterMake.jar");
-            HttpResponse<Path> response = client.send(request,
-                    HttpResponse.BodyHandlers.ofFile(output));
-
+            Files.copy(in, output, StandardCopyOption.REPLACE_EXISTING);
             System.out.print("Supported Language Options: C CPP OBJC OBJCPP\nEnter Lang: ");
             String lang = scanner.nextLine();
 
