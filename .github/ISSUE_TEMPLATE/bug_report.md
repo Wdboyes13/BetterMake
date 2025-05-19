@@ -23,8 +23,10 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
+**Desktop (Please complete following info):**
+ - OS: [e.g. Windows, macOS, Debian]
+ - OS Version: [e.g. 15.2, 22, Bionic Beaver, Sequoia]
+ - mk.xml you're using:
 
 **Additional context**
 Add any other context about the problem here.
