@@ -1,4 +1,4 @@
-name: Maven CI for Main
+name: Maven CI for CLI
 
 on:
   push:
@@ -23,7 +23,10 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        run: mvn package
+        run: |
+          cd cli/cli
+          mvn package
+          cd ../..
 
       - name: Commit JAR and Sign
         run: |
