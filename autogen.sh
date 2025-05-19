@@ -64,7 +64,7 @@ MF() {
     <FILE>$proj_name</FILE>
     <SRC>
         <LANG>$lang</LANG>
-        <Type>MultiFile</Type>
+        <Type>MF</Type>
         <FILE>$source_dir</FILE>
     </SRC>
     <GIT>
@@ -111,7 +111,7 @@ OF() {
     <FILE>$proj_name</FILE>
     <SRC>
         <LANG>$lang</LANG>
-        <Type>OneFile</Type>
+        <Type>OF</Type>
         <FILE>$source_file</FILE>
     </SRC>
     <GIT>
