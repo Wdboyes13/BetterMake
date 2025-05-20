@@ -1,10 +1,7 @@
-name: Maven CI for CLI
+name: Maven CI
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch
 
 jobs:
   build:
@@ -27,8 +24,9 @@ jobs:
           cd cli/cli
           mvn package
           cd ../..
+          mvn package
 
-      - name: Commit JAR and Sign
+      - name: Commit JAR
         run: |
           git config --global user.name "Wdboyes13"
           git config --global user.email "willdev2025@outlook.com"
