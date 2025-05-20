@@ -1,7 +1,8 @@
 name: Maven CI
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+  - cron: '33 22 * * 5'
 
 jobs:
   build:
